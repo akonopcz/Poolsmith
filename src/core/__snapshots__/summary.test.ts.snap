@@ -1,0 +1,125 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`planSummary > renders the example plan 1`] = `
+"# example
+
+Host: DL380 Gen9. Planned with poolsmith. All capacity and speed figures are estimates.
+
+## Warnings
+
+- Warning: Special vdev may lose 1 disks, the data vdevs 2. Losing it loses the whole pool
+
+## Disks
+
+| ID | Size | Type | Sectors | Location | Label |
+| --- | --- | --- | --- | --- | --- |
+| h0 | 8 TB | HDD | 512/4096 | DS4246 bay 0 |  |
+| h1 | 8 TB | HDD | 512/4096 | DS4246 bay 1 |  |
+| h2 | 8 TB | HDD | 512/4096 | DS4246 bay 2 |  |
+| h3 | 8 TB | HDD | 512/4096 | DS4246 bay 3 |  |
+| h4 | 8 TB | HDD | 512/4096 | DS4246 bay 4 |  |
+| h5 | 8 TB | HDD | 512/4096 | DS4246 bay 5 |  |
+| h6 | 8 TB | HDD | 512/4096 | DS4246 bay 6 |  |
+| s0 | 1 TB | SSD | 512/512 | DL380 Gen9 bay 0 |  |
+| s1 | 1 TB | SSD | 512/512 | DL380 Gen9 bay 1 |  |
+| s2 | 1 TB | SSD | 512/512 | DL380 Gen9 bay 2 |  |
+
+## Controllers
+
+- P440ar: HBA mode
+- LSI 9207-8e: HBA mode
+
+## Pool \`tank\`
+
+ashift 12, recordsize 128K.
+
+### Layout
+
+- Data: raidz2 of h0, h1, h2, h3, h4, h5 (tank-data-0)
+- Special: mirror of s0, s1 (tank-special-0)
+- Spare: h6
+
+### Capacity
+
+| | Size |
+| --- | --- |
+| Raw, data vdevs | 48 TB (43.66 TiB) |
+| Usable, naive | 32 TB (29.1 TiB) |
+| Usable, as zfs list and TrueNAS report it | 31.82 TB (28.94 TiB) |
+
+From raw to reported:
+
+- Larger disks than the smallest in their vdev: 0 MB (0 MiB)
+- Labels and boot area: 28.51 MB (27.19 MiB)
+- Metaslab rounding: 16.6 GB (15.46 GiB)
+- Embedded log metaslabs: 17.18 GB (16 GiB)
+- Parity, copies and padding at 128K: 16.02 TB (14.57 TiB)
+- Slop space: 126 GB (117.34 GiB)
+
+Disks the vdevs may lose: tank-data-0 2, tank-special-0 1.
+
+### Space efficiency per block size
+
+Usable space if every block had this size, uncompressed.
+
+| Block size | Usable | tank-data-0 |
+| --- | --- | --- |
+| 4K | 16 TB (14.55 TiB) | 33.3% |
+| 8K | 16 TB (14.55 TiB) | 33.3% |
+| 16K | 32 TB (29.1 TiB) | 66.7% |
+| 32K | 32 TB (29.1 TiB) | 66.7% |
+| 64K | 32 TB (29.1 TiB) | 66.7% |
+| 128K | 32 TB (29.1 TiB) | 66.7% |
+| 256K | 32 TB (29.1 TiB) | 66.7% |
+| 512K | 32 TB (29.1 TiB) | 66.7% |
+| 1M | 32 TB (29.1 TiB) | 66.7% |
+| without padding | | 66.7% |
+
+### Speed
+
+Multiples of one member disk, rule of thumb.
+
+| Random read | Random write | Sequential read | Sequential write |
+| --- | --- | --- | --- |
+| 1× | 1× | 4× | 4× |
+
+### TrueNAS 25.10
+
+1. Open **Storage** and click **Create Pool** at the top right of the Storage Dashboard.
+2. **General Info**: enter \`tank\` as **Name**. Leave **Encryption** off, the plan does not cover encryption.
+3. **Data**: set **Layout** to RAIDZ2, **Width** to 6 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: h0 (8 TB HDD, DS4246 bay 0), h1 (8 TB HDD, DS4246 bay 1), h2 (8 TB HDD, DS4246 bay 2), h3 (8 TB HDD, DS4246 bay 3), h4 (8 TB HDD, DS4246 bay 4), h5 (8 TB HDD, DS4246 bay 5).
+4. **Spare (Optional)**: add h6 (8 TB HDD, DS4246 bay 6).
+5. **Metadata (Optional)**: set **Layout** to Mirror, **Width** to 2 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: s0 (1 TB SSD, DL380 Gen9 bay 0), s1 (1 TB SSD, DL380 Gen9 bay 1).
+6. Skip **Dedup (Optional)**.
+7. **Review**: check the vdevs, then click **Create Pool**.
+
+- Labels follow the TrueNAS 25.10 docs and may differ slightly in the live UI.
+- The wizard has no ashift field. TrueNAS chooses it, the plan assumes 12.
+- TrueNAS 27 calls the Metadata step Special.
+
+### zpool create
+
+\`\`\`sh
+# Reference only. poolsmith never runs commands on a host.
+# zpool create wipes every disk it lists. Replace each <disk:ID> with the
+# matching /dev/disk/by-id path before running it.
+#
+# <disk:h0>  8 TB HDD, DS4246 bay 0
+# <disk:h1>  8 TB HDD, DS4246 bay 1
+# <disk:h2>  8 TB HDD, DS4246 bay 2
+# <disk:h3>  8 TB HDD, DS4246 bay 3
+# <disk:h4>  8 TB HDD, DS4246 bay 4
+# <disk:h5>  8 TB HDD, DS4246 bay 5
+# <disk:s0>  1 TB SSD, DL380 Gen9 bay 0
+# <disk:s1>  1 TB SSD, DL380 Gen9 bay 1
+# <disk:h6>  8 TB HDD, DS4246 bay 6
+zpool create \\
+  -o ashift=12 \\
+  -O recordsize=128K \\
+  tank \\
+  raidz2 <disk:h0> <disk:h1> <disk:h2> <disk:h3> <disk:h4> <disk:h5> \\
+  special mirror <disk:s0> <disk:s1> \\
+  spare <disk:h6>
+\`\`\`
+"
+`;
