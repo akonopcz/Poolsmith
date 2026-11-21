@@ -1,6 +1,6 @@
 <script lang="ts">
   import { formatBinary, formatBlockSize, formatDecimal } from '../core/format'
-  import { faultTolerance, hasValidDiskCount } from '../core/zfs/topology'
+  import { faultTolerance, hasValidDiskCount, poolFaultTolerance } from '../core/zfs/topology'
   import Findings from './Findings.svelte'
   import { vdevCodes } from './labels'
   import { store } from './store.svelte'
@@ -21,6 +21,8 @@
       .filter(({ v }) => hasValidDiskCount(v))
       .map(({ v, role }) => ({ id: v.id, role, code: codes.get(v.id)!, n: faultTolerance(v) }))
   })
+
+  const poolTolerance = $derived(poolFaultTolerance(store.pool))
 
   const unused = $derived(store.disks.filter((d) => !store.usedDiskIds.has(d.id)).length)
   const issues = $derived(store.findings.filter((f) => f.severity === 'issue').length)
@@ -99,20 +101,27 @@
     </div>
 
     <dl class="facts">
-      <dt>Disks that may fail</dt>
-      <dd>
-        {#each tolerances as t (t.id)}
-          <span class="tol" class:zero={t.n === 0}>
-            <span class="bullet" style:--line="var(--line-{t.role})">{t.code}</span>{t.n}
-          </span>
-        {/each}
+      <dt>Disks the pool may lose</dt>
+      <dd class:zero={poolTolerance === 0}>
+        {poolTolerance === 0 ? 'none' : `any ${poolTolerance}`}
       </dd>
+      {#if tolerances.length > 1}
+        <dt class="per-line">Per line</dt>
+        <dd class="per-line">
+          {#each tolerances as t (t.id)}
+            <span class="tol" class:zero={t.n === 0}>
+              <span class="bullet" style:--line="var(--line-{t.role})">{t.code}</span>{t.n}
+            </span>
+          {/each}
+        </dd>
+      {/if}
       <dt>Disks not in any pool</dt>
       <dd>{unused} of {store.disks.length}</dd>
     </dl>
     {#if tolerances.length > 1}
       <p class="note">
-        Each line may lose this many disks. Losing more in any single line loses the pool.
+        The weakest line sets the pool's number. More failures are survivable only while every line
+        stays within its own limit.
       </p>
     {/if}
   {/if}
@@ -323,8 +332,17 @@
     font-size: 11px;
   }
 
+  .facts dd.zero,
   .tol.zero {
     color: var(--warning);
+  }
+
+  .facts .per-line {
+    font-size: 13px;
+  }
+
+  .facts dt.per-line {
+    color: var(--ink-3);
   }
 
   .note {
