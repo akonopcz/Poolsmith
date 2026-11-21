@@ -1,4 +1,4 @@
-import type { VdevType } from './model'
+import type { Vdev, VdevType } from './model'
 
 export const PARITY: Record<VdevType, number> = {
   disk: 0,
@@ -17,4 +17,9 @@ export function minDisks(type: VdevType): number {
     default:
       return PARITY[type] + 1
   }
+}
+
+/** Disks the vdev may lose without losing data, assuming it has a valid disk count. */
+export function faultTolerance(vdev: Vdev): number {
+  return vdev.type === 'mirror' ? vdev.diskIds.length - 1 : PARITY[vdev.type]
 }
