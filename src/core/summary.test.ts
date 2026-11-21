@@ -12,7 +12,7 @@ describe('planSummary', () => {
     plan.layouts[0].data[0].diskIds = ['h0']
     const summary = planSummary(plan)
     expect(summary.indexOf('## Issues')).toBeLessThan(summary.indexOf('## Disks'))
-    expect(summary).toContain('- raidz2 vdev has 1 disks, needs at least 3 disks')
+    expect(summary).toContain('- raidz2 vdev has 1 disk, needs at least 3 disks')
   })
   it('says when the pool may lose no disk', () => {
     const plan = examplePlan()

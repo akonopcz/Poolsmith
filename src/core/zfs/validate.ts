@@ -83,7 +83,7 @@ function validateDiskCount(vdev: Vdev): Issue[] {
   return [
     {
       code: 'vdev-disk-count',
-      message: `${vdev.type} vdev has ${count} disks, needs ${expected}`,
+      message: `${vdev.type} vdev has ${count} ${count === 1 ? 'disk' : 'disks'}, needs ${expected}`,
       ids: [vdev.id],
     },
   ]
