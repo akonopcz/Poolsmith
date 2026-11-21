@@ -3,6 +3,14 @@ node_modules/
 dist/
 coverage/
 
+# Logs
+*.log
+
+# Editors
+.idea/
+.vscode/
+*.sw?
+
 # Local environment
 .env
 .env.*
