@@ -23,6 +23,8 @@ export interface EnclosureSpec {
   formFactor: Bay['formFactor']
   bayCount: number
   firstLabel: number
+  /** Bays per row; leave out to let `bayColumns` guess. */
+  columns?: number
   /** An existing controller, a new one, or none for onboard ports. */
   controller: { id: string } | { name: string; mode: Controller['mode'] } | null
 }
@@ -113,6 +115,7 @@ export function addEnclosure(plan: Plan, spec: EnclosureSpec): Enclosure {
     return bay
   })
   const enclosure: Enclosure = { id: enclosureId, name: spec.name, kind: spec.kind, bays }
+  if (spec.columns !== undefined) enclosure.columns = spec.columns
   plan.host.enclosures.push(enclosure)
   return enclosure
 }

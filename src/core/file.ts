@@ -81,12 +81,18 @@ class Reader {
 
   enclosure(data: unknown, path: string): Enclosure {
     const o = this.object(data, path)
-    return {
+    const enclosure: Enclosure = {
       id: this.string(o.id, `${path}.id`),
       name: this.string(o.name, `${path}.name`),
       kind: this.oneOf(o.kind, `${path}.kind`, ['chassis', 'shelf', 'usb']),
       bays: this.array(o.bays, `${path}.bays`, (item, p) => this.bay(item, p)),
     }
+    if (o.columns !== undefined) {
+      const columns = this.number(o.columns, `${path}.columns`)
+      if (Number.isInteger(columns) && columns >= 1) enclosure.columns = columns
+      else this.errors.push(`${path}.columns must be a whole number of at least 1`)
+    }
+    return enclosure
   }
 
   bay(data: unknown, path: string): Bay {

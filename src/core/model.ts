@@ -32,6 +32,8 @@ export interface Enclosure {
   name: string
   kind: 'chassis' | 'shelf' | 'usb'
   bays: Bay[]
+  /** Bays per row on the front, filled left to right and top to bottom. Missing means a guess. */
+  columns?: number
 }
 
 export interface Bay {

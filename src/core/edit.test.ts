@@ -65,6 +65,20 @@ describe('addEnclosure', () => {
     expect(validatePlan(plan).map((i) => i.code)).toEqual(['no-data-vdev'])
   })
 
+  it('stores bays per row only when given', () => {
+    const plan = emptyPlan()
+    const base = {
+      name: 'DS4246',
+      kind: 'shelf',
+      formFactor: 'lff',
+      bayCount: 24,
+      firstLabel: 0,
+      controller: null,
+    } as const
+    expect(addEnclosure(plan, base).columns).toBeUndefined()
+    expect(addEnclosure(plan, { ...base, columns: 6 }).columns).toBe(6)
+  })
+
   it('leaves bays without a controller for onboard ports', () => {
     const plan = emptyPlan()
     const enclosure = addEnclosure(plan, {
