@@ -27,6 +27,13 @@
   const formFactor = $derived(enclosure.bays[0]?.formFactor ?? 'lff')
   const columns = $derived(bayColumns(enclosure))
 
+  // Smallest and largest width of one bay. The block shrinks to share a row with others and
+  // stops growing before bays turn into wide slabs.
+  const BAY_WIDTH = { sff: [36, 64], lff: [56, 96], m2: [56, 96] } as const
+  const width = $derived(
+    BAY_WIDTH[formFactor].map((bay) => columns * bay + (columns - 1) * 4) as [number, number],
+  )
+
   // An empty field drops the stored value, so the grid falls back to the guess.
   function setColumns(event: Event) {
     const value = (event.currentTarget as HTMLInputElement).valueAsNumber
@@ -45,7 +52,13 @@
   }
 </script>
 
-<section class="enclosure" data-flag={flag} data-part={enclosure.id}>
+<section
+  class="enclosure"
+  data-flag={flag}
+  data-part={enclosure.id}
+  style:flex-basis="{width[0]}px"
+  style:max-width="{width[1]}px"
+>
   <div class="head">
     <input class="name" bind:value={enclosure.name} aria-label="Enclosure name" />
     <button
@@ -125,6 +138,8 @@
 
 <style>
   .enclosure {
+    flex: 1 1 auto;
+    min-width: 0;
     margin-bottom: 24px;
   }
 
@@ -200,8 +215,9 @@
 
   .controller {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 4px 8px;
     margin: 0 0 8px;
   }
 

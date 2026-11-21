@@ -51,9 +51,11 @@
       </div>
     {/if}
 
-    {#each store.plan.host.enclosures as enclosure (enclosure.id)}
-      <EnclosureBlock enclosureId={enclosure.id} />
-    {/each}
+    <div class="enclosures">
+      {#each store.plan.host.enclosures as enclosure (enclosure.id)}
+        <EnclosureBlock enclosureId={enclosure.id} />
+      {/each}
+    </div>
 
     {#if loose.length > 0}
       <section class="loose">
@@ -113,6 +115,14 @@
 
   h2 {
     margin-bottom: 16px;
+  }
+
+  /* Enclosures sit side by side once the column is wide enough for both at their smallest. */
+  .enclosures {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 32px;
   }
 
   .guide {

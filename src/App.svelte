@@ -35,7 +35,8 @@
 <style>
   .planner {
     display: grid;
-    grid-template-columns: minmax(320px, 372px) minmax(0, 1fr) minmax(300px, 360px);
+    /* Hardware grows with wide screens so bays get room; the estimate needs no more than this. */
+    grid-template-columns: minmax(320px, 2fr) minmax(480px, 3fr) minmax(300px, 360px);
     height: calc(100vh - var(--header-height) - var(--footer-height));
   }
 
