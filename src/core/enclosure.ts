@@ -6,9 +6,13 @@ import type { Enclosure } from './model'
  * bays side by side in rows of eight, M.2 slots in rows of four.
  */
 export function bayColumns(enclosure: Enclosure): number {
-  const { columns } = enclosure
-  if (columns !== undefined && Number.isInteger(columns) && columns >= 1) return columns
-  return guessBayColumns(enclosure.bays[0]?.formFactor ?? 'lff', enclosure.bays.length)
+  const { columns, bays } = enclosure
+  const wanted =
+    columns !== undefined && Number.isInteger(columns) && columns >= 1
+      ? columns
+      : guessBayColumns(bays[0]?.formFactor ?? 'lff', bays.length)
+  // More columns than bays would only leave empty space beside the last bay.
+  return Math.min(wanted, Math.max(1, bays.length))
 }
 
 export function guessBayColumns(formFactor: 'lff' | 'sff' | 'm2', bayCount: number): number {
