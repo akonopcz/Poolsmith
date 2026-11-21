@@ -190,12 +190,12 @@
 
   .loose-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(0, 88px));
     gap: 4px;
   }
 
   .slot {
-    height: 58px;
+    height: 64px;
   }
 
   .add {
