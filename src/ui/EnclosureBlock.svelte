@@ -3,12 +3,12 @@
   import DiskTile from './DiskTile.svelte'
   import { removeEnclosure } from '../core/edit'
   import { bayColumns } from '../core/enclosure'
-  import { BAY_SIZE, enclosureWidth } from './bays'
+  import { BAY_SIZE } from './bays'
   import Icon from './Icon.svelte'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
 
-  let { enclosureId }: { enclosureId: string } = $props()
+  let { enclosureId, width }: { enclosureId: string; width: number } = $props()
 
   // Read from the store rather than taking the object as a prop, so edits here change the plan
   // directly instead of mutating a parent's prop.
@@ -28,10 +28,8 @@
   const formFactor = $derived(enclosure.bays[0]?.formFactor ?? 'lff')
   const columns = $derived(bayColumns(enclosure))
 
-  // Bays keep one scale and only shrink when the column is too narrow.
-  const bayWidth = $derived(BAY_SIZE[formFactor][0])
+  // Bays keep their height; their width follows the shared enclosure width from bays.ts.
   const bayHeight = $derived(BAY_SIZE[formFactor][1])
-  const width = $derived(enclosureWidth(enclosure))
 
   // An empty field drops the stored value, so the grid falls back to the guess.
   function setColumns(event: Event) {
@@ -56,7 +54,6 @@
   data-flag={flag}
   data-part={enclosure.id}
   style:width="{width}px"
-  style:--bay-width="{bayWidth}px"
   style:--bay-height="{bayHeight}px"
 >
   <div class="head">
@@ -253,7 +250,7 @@
 
   .bays {
     display: grid;
-    grid-template-columns: repeat(var(--columns), minmax(0, var(--bay-width)));
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     gap: 4px;
   }
 
