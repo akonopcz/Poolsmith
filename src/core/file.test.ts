@@ -18,6 +18,20 @@ describe('plan file', () => {
     expect(parsePlan(serializePlan(plan))).toEqual({ ok: true, plan })
   })
 
+  it('reads back bays per row', () => {
+    const plan = examplePlan()
+    plan.host.enclosures[1].columns = 6
+    expect(parsePlan(serializePlan(plan))).toEqual({ ok: true, plan })
+  })
+
+  it('reports bays per row that are not a positive whole number', () => {
+    const plan = examplePlan()
+    plan.host.enclosures[1].columns = 0
+    expect(errors(plan)).toEqual([
+      'host.enclosures[1].columns must be a whole number of at least 1',
+    ])
+  })
+
   it('writes indented JSON with a final newline', () => {
     const text = serializePlan(examplePlan())
     expect(text.startsWith('{\n  "schemaVersion": 1,')).toBe(true)
