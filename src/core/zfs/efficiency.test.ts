@@ -87,7 +87,7 @@ describe('computeEfficiencyTable', () => {
     const plan = examplePlan()
     const table = computeEfficiencyTable(plan.layouts[0], plan.host.disks)
     expect(table.rows.slice(0, 4).map((row) => row.usableBytes / TB)).toEqual([16, 16, 32, 32])
-    expect(table.idealEfficiency).toEqual([{ vdevId: 'tank-data-0', efficiency: 4 / 6 }])
+    expect(table.idealEfficiency).toEqual([{ vdevId: 'hdd01-data-0', efficiency: 4 / 6 }])
   })
 
   it('adds up mixed data vdevs and counts each member with the smallest disk', () => {
@@ -121,7 +121,7 @@ describe('computeEfficiencyTable', () => {
     const pool = plan.layouts[0]
     pool.data.push({ id: 'half', type: 'raidz2', diskIds: ['h6', 'missing'] })
     const table = computeEfficiencyTable(pool, plan.host.disks)
-    expect(table.idealEfficiency.map((entry) => entry.vdevId)).toEqual(['tank-data-0'])
+    expect(table.idealEfficiency.map((entry) => entry.vdevId)).toEqual(['hdd01-data-0'])
     expect(table.rows[0].vdevs).toHaveLength(1)
   })
 })

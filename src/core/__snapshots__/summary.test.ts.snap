@@ -29,7 +29,7 @@ Host: DL380 Gen9. Planned with poolsmith. All capacity and speed figures are est
 - P440ar: HBA mode
 - LSI 9207-8e: HBA mode
 
-## Pool \`tank\`
+## Pool \`hdd01\`
 
 ashift 12, recordsize 128K.
 
@@ -88,7 +88,7 @@ Multiples of one member disk, rule of thumb.
 ### TrueNAS 25.10
 
 1. Open **Storage** and click **Create Pool** at the top right of the Storage Dashboard.
-2. **General Info**: enter \`tank\` as **Name**. Leave **Encryption** off, the plan does not cover encryption.
+2. **General Info**: enter \`hdd01\` as **Name**. Leave **Encryption** off, the plan does not cover encryption.
 3. **Data**: set **Layout** to RAIDZ2, **Width** to 6 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: h0 (8 TB HDD, DS4246 bay 0), h1 (8 TB HDD, DS4246 bay 1), h2 (8 TB HDD, DS4246 bay 2), h3 (8 TB HDD, DS4246 bay 3), h4 (8 TB HDD, DS4246 bay 4), h5 (8 TB HDD, DS4246 bay 5).
 4. **Spare (Optional)**: add h6 (8 TB HDD, DS4246 bay 6).
 5. **Metadata (Optional)**: set **Layout** to Mirror, **Width** to 2 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: s0 (1 TB SSD, DL380 Gen9 bay 0), s1 (1 TB SSD, DL380 Gen9 bay 1).
@@ -118,7 +118,7 @@ Multiples of one member disk, rule of thumb.
 zpool create \\
   -o ashift=12 \\
   -O recordsize=128K \\
-  tank \\
+  hdd01 \\
   raidz2 <disk:h0> <disk:h1> <disk:h2> <disk:h3> <disk:h4> <disk:h5> \\
   special mirror <disk:s0> <disk:s1> \\
   spare <disk:h6>

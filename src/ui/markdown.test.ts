@@ -3,8 +3,8 @@ import { inlineMarkdown } from './markdown'
 
 describe('inlineMarkdown', () => {
   it('renders bold and code', () => {
-    expect(inlineMarkdown('Click **Create Pool** and enter `tank`.')).toBe(
-      'Click <strong>Create Pool</strong> and enter <code>tank</code>.',
+    expect(inlineMarkdown('Click **Create Pool** and enter `hdd01`.')).toBe(
+      'Click <strong>Create Pool</strong> and enter <code>hdd01</code>.',
     )
   })
 

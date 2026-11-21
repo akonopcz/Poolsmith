@@ -40,7 +40,7 @@ describe('findWarnings', () => {
         code: 'special-less-redundant',
         severity: 'warning',
         message: 'Special vdev may lose 1 disk, the data vdevs 2. Losing it loses the whole pool',
-        ids: ['tank-special-0'],
+        ids: ['hdd01-special-0'],
       },
     ])
   })
@@ -100,7 +100,7 @@ describe('findWarnings', () => {
           code: 'mixed-disk-sizes',
           severity: 'warning',
           message: 'raidz2 vdev mixes disk sizes. Every disk counts as 4 TB, so 20 TB stay unused',
-          ids: ['tank-data-0'],
+          ids: ['hdd01-data-0'],
         },
       ])
     })
@@ -118,7 +118,11 @@ describe('findWarnings', () => {
       plan.host.disks.push(hdd('h7', TB))
       pool(plan).special[0].diskIds = ['s0', 's1', 'h7']
       expect(findWarnings(plan)).toEqual([
-        expect.objectContaining({ code: 'mixed-media', severity: 'info', ids: ['tank-special-0'] }),
+        expect.objectContaining({
+          code: 'mixed-media',
+          severity: 'info',
+          ids: ['hdd01-special-0'],
+        }),
       ])
     })
 
@@ -159,7 +163,7 @@ describe('findWarnings', () => {
 
     it('warns about a single-disk special vdev', () => {
       const plan = cleanPlan()
-      pool(plan).special[0] = { id: 'tank-special-0', type: 'disk', diskIds: ['s0'] }
+      pool(plan).special[0] = { id: 'hdd01-special-0', type: 'disk', diskIds: ['s0'] }
       expect(codes(plan)).toEqual(['special-no-redundancy'])
     })
 
@@ -193,7 +197,7 @@ describe('findWarnings', () => {
           severity: 'warning',
           message:
             'Data vdevs differ in type or width: raidz2 of 6, mirror of 2. The pool gets uneven redundancy and performance',
-          ids: ['tank-data-0', 'v1'],
+          ids: ['hdd01-data-0', 'v1'],
         },
       ])
     })
@@ -237,7 +241,7 @@ describe('findWarnings', () => {
     expect(findWarnings(plan)).toEqual([
       expect.objectContaining({
         code: 'ashift-below-sector',
-        ids: ['tank', 'h0', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+        ids: ['hdd01', 'h0', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       }),
     ])
   })

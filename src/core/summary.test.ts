@@ -16,7 +16,7 @@ describe('planSummary', () => {
   })
   it('says when the pool may lose no disk', () => {
     const plan = examplePlan()
-    plan.layouts[0].special[0] = { id: 'tank-special-0', type: 'disk', diskIds: ['s0'] }
+    plan.layouts[0].special[0] = { id: 'hdd01-special-0', type: 'disk', diskIds: ['s0'] }
     expect(planSummary(plan)).toContain(
       'The pool may lose no disk: one failed data or special disk loses it.',
     )

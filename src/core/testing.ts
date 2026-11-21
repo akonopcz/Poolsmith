@@ -20,7 +20,7 @@ function bays(prefix: string, count: number, formFactor: Bay['formFactor'], cont
   }))
 }
 
-export function emptyPool(id = 'tank'): ZfsPool {
+export function emptyPool(id = 'hdd01'): ZfsPool {
   return {
     kind: 'zfs',
     id,
@@ -66,9 +66,9 @@ export function examplePlan(): Plan {
       {
         ...emptyPool(),
         data: [
-          { id: 'tank-data-0', type: 'raidz2', diskIds: ['h0', 'h1', 'h2', 'h3', 'h4', 'h5'] },
+          { id: 'hdd01-data-0', type: 'raidz2', diskIds: ['h0', 'h1', 'h2', 'h3', 'h4', 'h5'] },
         ],
-        special: [{ id: 'tank-special-0', type: 'mirror', diskIds: ['s0', 's1'] }],
+        special: [{ id: 'hdd01-special-0', type: 'mirror', diskIds: ['s0', 's1'] }],
         spare: ['h6'],
       },
     ],

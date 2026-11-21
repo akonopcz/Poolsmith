@@ -35,6 +35,6 @@ describe('estimatePerformance', () => {
     const plan = examplePlan()
     plan.layouts[0].data.push(vdev('half', 'raidz1', 1))
     const performance = estimatePerformance(plan.layouts[0])
-    expect(performance.vdevs.map((entry) => entry.vdevId)).toEqual(['tank-data-0'])
+    expect(performance.vdevs.map((entry) => entry.vdevId)).toEqual(['hdd01-data-0'])
   })
 })
