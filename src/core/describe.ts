@@ -10,6 +10,13 @@ export function diskLocation(host: Host, diskId: string): string | undefined {
   return undefined
 }
 
+/** A short name to find a disk by: its bay, else its label, else its ID. */
+export function diskName(host: Host, diskId: string): string {
+  return (
+    diskLocation(host, diskId) ?? host.disks.find((disk) => disk.id === diskId)?.label ?? diskId
+  )
+}
+
 /** One line that helps find a disk in the server, for example "8 TB HDD, DS4246 bay 3, WD Red". */
 export function describeDisk(host: Host, diskId: string): string {
   const disk = host.disks.find((candidate) => candidate.id === diskId)

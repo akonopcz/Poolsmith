@@ -1,3 +1,4 @@
+import { diskName } from './describe'
 import type { Bay, Host, Plan } from './model'
 import type { Warning } from './warning'
 import { zfsDiskIds } from './zfs/validate'
@@ -10,7 +11,7 @@ import { warnZfsPool } from './zfs/warn'
 export function findWarnings(plan: Plan): Warning[] {
   return plan.layouts.flatMap((layout) => [
     ...warnAttachment(plan.host, new Set(zfsDiskIds(layout))),
-    ...warnZfsPool(layout, plan.host.disks),
+    ...warnZfsPool(layout, plan.host),
   ])
 }
 
@@ -29,7 +30,7 @@ function warnAttachment(host: Host, diskIds: Set<string>): Warning[] {
     warnings.push({
       code: 'raid-controller',
       severity: 'warning',
-      message: `Controller ${controller.name} runs in RAID mode, but ZFS needs direct disk access. Switch it to HBA mode. Disks: ${disks.join(', ')}`,
+      message: `Controller ${controller.name} runs in RAID mode, but ZFS needs direct disk access. Switch it to HBA mode. Disks: ${names(host, disks)}`,
       ids: [controller.id, ...disks],
     })
   }
@@ -41,7 +42,7 @@ function warnAttachment(host: Host, diskIds: Set<string>): Warning[] {
     warnings.push({
       code: 'usb-disk',
       severity: 'warning',
-      message: `${enclosure.name} is attached over USB. USB bridges often hide SMART data and drop disks under load, which faults the pool. Disks: ${disks.join(', ')}`,
+      message: `${enclosure.name} is attached over USB. USB bridges often hide SMART data and drop disks under load, which faults the pool. Disks: ${names(host, disks)}`,
       ids: [enclosure.id, ...disks],
     })
   }
@@ -51,4 +52,8 @@ function warnAttachment(host: Host, diskIds: Set<string>): Warning[] {
 
 function diskIdsOf(entries: { bay: Bay }[]): string[] {
   return entries.flatMap(({ bay }) => (bay.diskId === undefined ? [] : [bay.diskId]))
+}
+
+function names(host: Host, diskIds: string[]): string {
+  return diskIds.map((id) => diskName(host, id)).join(', ')
 }
