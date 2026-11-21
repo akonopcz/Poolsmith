@@ -3,7 +3,7 @@ import type { Plan } from '../core/model'
 import type { Warning } from '../core/warning'
 import type { ZfsPool } from '../core/zfs/model'
 import { zfsDiskIds } from '../core/zfs/validate'
-import { vdevsOf } from './edits'
+import { vdevsOf } from '../core/edit'
 import { widenIds } from './labels'
 
 export type Finding =

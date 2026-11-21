@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte'
   import type { VdevType } from '../core/zfs/model'
   import { canPlace, dropTarget, placePicked } from './dnd'
-  import { addEmptyVdev, type VdevGroup } from './edits'
+  import { addEmptyVdev, type VdevGroup } from '../core/edit'
   import Icon from './Icon.svelte'
   import { vdevCodes, TYPE_LABEL } from './labels'
   import { store } from './store.svelte'

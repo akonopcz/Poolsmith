@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { examplePlan, hdd } from '../core/testing'
-import { validatePlan } from '../core/validate'
+import { examplePlan, hdd } from './testing'
+import { validatePlan } from './validate'
 import {
   addDisksToBays,
   addEmptyVdev,
@@ -16,7 +16,7 @@ import {
   uniqueId,
   updateDisk,
   type DiskSpec,
-} from './edits'
+} from './edit'
 
 const spec: DiskSpec = {
   sizeBytes: 8_000_000_000_000,

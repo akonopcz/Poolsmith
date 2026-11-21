@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Bay, Controller, Enclosure } from '../core/model'
-  import { addEnclosure } from './edits'
+  import { addEnclosure } from '../core/edit'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
 

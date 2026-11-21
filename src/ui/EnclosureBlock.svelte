@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Enclosure } from '../core/model'
   import DiskTile from './DiskTile.svelte'
-  import { removeEnclosure } from './edits'
+  import { removeEnclosure } from '../core/edit'
   import Icon from './Icon.svelte'
   import { store } from './store.svelte'
   import Term from './Term.svelte'

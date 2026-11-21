@@ -1,5 +1,5 @@
 import type { Action } from 'svelte/action'
-import { placeDisk, unassignDisk, type Slot } from './edits'
+import { placeDisk, unassignDisk, type Slot } from '../core/edit'
 import { poolOfDisk } from './labels'
 import { store } from './store.svelte'
 
