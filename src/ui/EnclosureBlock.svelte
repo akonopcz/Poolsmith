@@ -2,11 +2,18 @@
   import type { Enclosure } from '../core/model'
   import DiskTile from './DiskTile.svelte'
   import { removeEnclosure } from '../core/edit'
+  import { bayColumns } from '../core/enclosure'
   import Icon from './Icon.svelte'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
 
-  let { enclosure }: { enclosure: Enclosure } = $props()
+  let { enclosureId }: { enclosureId: string } = $props()
+
+  // Read from the store rather than taking the object as a prop, so edits here change the plan
+  // directly instead of mutating a parent's prop.
+  const enclosure: Enclosure = $derived(
+    store.plan.host.enclosures.find((e) => e.id === enclosureId)!,
+  )
 
   const KIND = { chassis: 'Chassis', shelf: 'Disk shelf', usb: 'USB enclosure' }
   const FORM = { lff: '3.5" LFF', sff: '2.5" SFF', m2: 'M.2' }
@@ -18,10 +25,14 @@
   )
   const onboard = $derived(enclosure.bays.some((bay) => bay.controllerId === undefined))
   const formFactor = $derived(enclosure.bays[0]?.formFactor ?? 'lff')
-  // Close to how vendors arrange bays: 12 LFF in rows of four, larger shelves in rows of six.
-  const columns = $derived(
-    formFactor === 'sff' ? 8 : formFactor === 'm2' ? 4 : enclosure.bays.length > 12 ? 6 : 4,
-  )
+  const columns = $derived(bayColumns(enclosure))
+
+  // An empty field drops the stored value, so the grid falls back to the guess.
+  function setColumns(event: Event) {
+    const value = (event.currentTarget as HTMLInputElement).valueAsNumber
+    if (Number.isInteger(value) && value >= 1) enclosure.columns = value
+    else if (Number.isNaN(value)) delete enclosure.columns
+  }
   const flag = $derived(store.flagged.get(enclosure.id))
   const diskCount = $derived(enclosure.bays.filter((b) => b.diskId !== undefined).length)
 
@@ -46,7 +57,17 @@
     </button>
   </div>
   <p class="meta">
-    {KIND[enclosure.kind]} · {enclosure.bays.length} × {FORM[formFactor]}
+    {KIND[enclosure.kind]} · {enclosure.bays.length} × {FORM[formFactor]} ·
+    <label class="per-row" title="Bays per row as on the front. Empty means a guess.">
+      <input
+        type="number"
+        min="1"
+        max={enclosure.bays.length}
+        value={columns}
+        oninput={setColumns}
+      />
+      per row
+    </label>
     {#if enclosure.kind === 'usb'}<span class="usb">· USB bridges can drop disks</span>{/if}
   </p>
 
@@ -145,6 +166,32 @@
     font-size: 12px;
     color: var(--ink-2);
     margin: 0 0 8px;
+  }
+
+  .per-row input {
+    width: 2em;
+    appearance: textfield;
+    text-align: center;
+    height: 22px;
+    padding: 0 2px 0 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .per-row input::-webkit-inner-spin-button,
+  .per-row input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  .per-row input:hover,
+  .per-row input:focus {
+    border-color: var(--rule-strong);
+    background: var(--raise);
   }
 
   .usb {

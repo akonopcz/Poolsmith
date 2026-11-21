@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Bay, Controller, Enclosure } from '../core/model'
   import { addEnclosure } from '../core/edit'
+  import { guessBayColumns } from '../core/enclosure'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
 
@@ -9,11 +10,16 @@
   let formFactor = $state<Bay['formFactor']>('lff')
   let bayCount = $state(8)
   let firstLabel = $state(0)
+  let columns = $state<number | null | undefined>(undefined)
   let controllerChoice = $state<string>('new')
   let controllerName = $state('HBA')
   let controllerMode = $state<Controller['mode']>('hba')
 
-  const valid = $derived(Number.isInteger(bayCount) && bayCount >= 1 && bayCount <= 108)
+  const guess = $derived(guessBayColumns(formFactor, bayCount))
+  const columnsValid = $derived(columns == null || (Number.isInteger(columns) && columns >= 1))
+  const valid = $derived(
+    Number.isInteger(bayCount) && bayCount >= 1 && bayCount <= 108 && columnsValid,
+  )
 
   function submit(event: SubmitEvent) {
     event.preventDefault()
@@ -25,6 +31,7 @@
       formFactor,
       bayCount,
       firstLabel,
+      columns: columns ?? undefined,
       controller:
         controllerChoice === 'none'
           ? null
@@ -64,13 +71,24 @@
     </label>
   </div>
 
-  <div class="row">
+  <div class="row three">
     <label class="field">
       Bays
       <input type="number" min="1" max="108" step="1" bind:value={bayCount} required />
     </label>
     <label class="field">
-      First bay number
+      Per row
+      <input
+        type="number"
+        min="1"
+        max={bayCount}
+        step="1"
+        bind:value={columns}
+        placeholder="Auto ({guess})"
+      />
+    </label>
+    <label class="field">
+      Numbered from
       <select bind:value={firstLabel}>
         <option value={0}>0</option>
         <option value={1}>1</option>
@@ -145,6 +163,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     align-items: end;
+  }
+
+  .row.three {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .buttons {
