@@ -1,5 +1,6 @@
+import { diskName } from '../describe'
 import { formatDecimal } from '../format'
-import type { Disk } from '../model'
+import type { Disk, Host } from '../model'
 import type { Warning } from '../warning'
 import type { Vdev, VdevType, ZfsPool } from './model'
 import { faultTolerance } from './topology'
@@ -14,8 +15,8 @@ const RAIDZ_WIDTH: Partial<Record<VdevType, [min: number, max: number]>> = {
 }
 
 /** Expects a pool without issues and skips disk IDs it does not know. */
-export function warnZfsPool(pool: ZfsPool, disks: Disk[]): Warning[] {
-  const byId = new Map(disks.map((disk) => [disk.id, disk]))
+export function warnZfsPool(pool: ZfsPool, host: Host): Warning[] {
+  const byId = new Map(host.disks.map((disk) => [disk.id, disk]))
   const members = (vdev: Vdev) => vdev.diskIds.flatMap((id) => byId.get(id) ?? [])
   const vdevs = [...pool.data, ...pool.special, ...pool.log]
 
@@ -23,7 +24,7 @@ export function warnZfsPool(pool: ZfsPool, disks: Disk[]): Warning[] {
     ...vdevs.flatMap((vdev) => warnVdev(vdev, members(vdev))),
     ...warnRedundancy(pool),
     ...warnDataVdevMix(pool.data, members),
-    ...warnAshift(pool, byId),
+    ...warnAshift(pool, host, byId),
   ]
 }
 
@@ -137,7 +138,7 @@ function warnDataVdevMix(data: Vdev[], members: (vdev: Vdev) => Disk[]): Warning
   return warnings
 }
 
-function warnAshift(pool: ZfsPool, byId: Map<string, Disk>): Warning[] {
+function warnAshift(pool: ZfsPool, host: Host, byId: Map<string, Disk>): Warning[] {
   const sectorSize = 2 ** pool.ashift
   const affected = [...new Set(zfsDiskIds(pool))].filter((id) => {
     const disk = byId.get(id)
@@ -149,7 +150,7 @@ function warnAshift(pool: ZfsPool, byId: Map<string, Disk>): Warning[] {
     {
       code: 'ashift-below-sector',
       severity: 'warning',
-      message: `ashift ${pool.ashift} writes ${sectorSize} B blocks to disks with larger physical sectors, which costs a lot of write performance. ashift cannot change after a vdev exists. Disks: ${affected.join(', ')}`,
+      message: `ashift ${pool.ashift} writes ${sectorSize} B blocks to disks with larger physical sectors, which costs a lot of write performance. ashift cannot change after a vdev exists. Disks: ${affected.map((id) => diskName(host, id)).join(', ')}`,
       ids: [pool.id, ...affected],
     },
   ]

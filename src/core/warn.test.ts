@@ -58,6 +58,13 @@ describe('findWarnings', () => {
       ])
     })
 
+    it('names the disks by bay', () => {
+      const plan = examplePlan()
+      plan.host.controllers[0].mode = 'raid'
+      const raid = findWarnings(plan).find((w) => w.code === 'raid-controller')
+      expect(raid?.message).toMatch(/Disks: DL380 Gen9 bay 0, DL380 Gen9 bay 1$/)
+    })
+
     it('ignores a RAID controller with only unused disks', () => {
       const plan = examplePlan()
       plan.host.controllers[0].mode = 'raid'
