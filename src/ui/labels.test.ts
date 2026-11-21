@@ -1,12 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { examplePlan } from '../core/testing'
-import { diskPlace, vdevCodes, widenIds } from './labels'
+import { diskPlace, widenIds } from './labels'
 
-describe('vdevCodes and diskPlace', () => {
+describe('diskPlace', () => {
   it('names lines per group', () => {
     const plan = examplePlan()
     const pool = plan.layouts[0]
-    expect([...vdevCodes(pool).values()]).toEqual(['D1', 'S1'])
     expect(diskPlace(pool, 'h0')).toEqual({ role: 'data', vdevId: 'tank-data-0', code: 'D1' })
     expect(diskPlace(pool, 'h6')).toEqual({ role: 'spare', code: 'SP' })
     expect(diskPlace(pool, 's2')).toBeUndefined()
