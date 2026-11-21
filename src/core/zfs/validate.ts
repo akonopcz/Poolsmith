@@ -8,6 +8,11 @@ const MIN_RECORDSIZE = 512
 // Default zfs_max_recordsize since OpenZFS 2.2.
 const MAX_RECORDSIZE = 16 * 1024 * 1024
 
+// Rules from zpool-create(8).
+const POOL_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9_\-:. ]*$/
+const RESERVED_POOL_NAMES = ['log']
+const RESERVED_POOL_NAME_PREFIXES = ['mirror', 'raidz', 'draid', 'spare']
+
 /** Every disk reference in the pool, with repeats, so callers can find disks used twice. */
 export function zfsDiskIds(pool: ZfsPool): string[] {
   const vdevs = [...pool.data, ...pool.special, ...pool.log]
@@ -29,6 +34,15 @@ export function validateZfsPool(pool: ZfsPool, knownDiskIds: Set<string>): Issue
     issues.push({
       code: 'invalid-recordsize',
       message: `recordsize ${pool.recordsize} is not a power of two from 512 B to 16 MiB`,
+      ids: [pool.id],
+    })
+  }
+
+  const nameProblem = poolNameProblem(pool.name)
+  if (nameProblem !== undefined) {
+    issues.push({
+      code: 'invalid-pool-name',
+      message: `Pool name "${pool.name}" ${nameProblem}`,
       ids: [pool.id],
     })
   }
@@ -73,6 +87,16 @@ function validateDiskCount(vdev: Vdev): Issue[] {
       ids: [vdev.id],
     },
   ]
+}
+
+function poolNameProblem(name: string): string | undefined {
+  if (!POOL_NAME_PATTERN.test(name)) {
+    return 'must start with a letter and contain only letters, digits, "_", "-", ":", "." and spaces'
+  }
+  if (RESERVED_POOL_NAMES.includes(name)) return 'is reserved'
+  const prefix = RESERVED_POOL_NAME_PREFIXES.find((reserved) => name.startsWith(reserved))
+  if (prefix !== undefined) return `must not start with "${prefix}"`
+  return undefined
 }
 
 function isPowerOfTwoInRange(value: number, min: number, max: number): boolean {

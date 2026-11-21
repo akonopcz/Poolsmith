@@ -95,6 +95,32 @@ describe('validatePlan', () => {
       expect(codes(plan)).toEqual([])
     })
 
+    it.each([
+      '',
+      '1tank',
+      '_tank',
+      'tank/data',
+      'tänk',
+      'log',
+      'mirror',
+      'raidz2',
+      'draidpool',
+      'spare1',
+    ])('reports pool name "%s"', (name) => {
+      const plan = examplePlan()
+      pool(plan).name = name
+      expect(codes(plan)).toEqual(['invalid-pool-name'])
+    })
+
+    it.each(['tank', 'Tank-01', 'fast_pool', 'pool:a.b', 'my pool', 'logs', 'Mirror'])(
+      'accepts pool name "%s"',
+      (name) => {
+        const plan = examplePlan()
+        pool(plan).name = name
+        expect(codes(plan)).toEqual([])
+      },
+    )
+
     it('reports a pool without data vdevs', () => {
       const plan = examplePlan()
       plan.layouts.push(emptyPool('empty'))
