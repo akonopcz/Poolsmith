@@ -2,7 +2,7 @@
   import { formatBinary, formatBlockSize, formatDecimal } from '../core/format'
   import { faultTolerance, hasValidDiskCount, poolFaultTolerance } from '../core/zfs/topology'
   import Findings from './Findings.svelte'
-  import { vdevCodes } from './labels'
+  import { vdevCodes } from '../core/zfs/codes'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
 

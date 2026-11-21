@@ -1,5 +1,6 @@
 import type { Host, Plan } from '../core/model'
 import type { VdevType, ZfsPool } from '../core/zfs/model'
+import { vdevCodes } from '../core/zfs/codes'
 import { zfsDiskIds } from '../core/zfs/validate'
 
 /** Each role owns one line colour, defined as a CSS custom property `--line-<role>`. */
@@ -10,17 +11,6 @@ export interface DiskPlace {
   vdevId?: string
   /** Line bullet text, for example D1, S1, C, SP. */
   code: string
-}
-
-const PREFIX = { data: 'D', special: 'S', log: 'L' } as const
-
-/** Line bullet text per vdev: D1, D2 for data, S1 for special, L1 for log. */
-export function vdevCodes(pool: ZfsPool): Map<string, string> {
-  const codes = new Map<string, string>()
-  for (const group of ['data', 'special', 'log'] as const) {
-    pool[group].forEach((vdev, i) => codes.set(vdev.id, `${PREFIX[group]}${i + 1}`))
-  }
-  return codes
 }
 
 export function diskPlace(pool: ZfsPool, diskId: string): DiskPlace | undefined {

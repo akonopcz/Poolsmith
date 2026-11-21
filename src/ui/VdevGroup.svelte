@@ -4,7 +4,8 @@
   import { canPlace, dropTarget, placePicked } from './dnd'
   import { addEmptyVdev, type VdevGroup } from '../core/edit'
   import Icon from './Icon.svelte'
-  import { vdevCodes, TYPE_LABEL } from './labels'
+  import { vdevCodes } from '../core/zfs/codes'
+  import { TYPE_LABEL } from './labels'
   import { store } from './store.svelte'
   import VdevLine from './VdevLine.svelte'
 
