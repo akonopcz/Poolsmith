@@ -8,6 +8,7 @@ export type IssueCode =
   | 'invalid-sector-size'
   | 'invalid-ashift'
   | 'invalid-recordsize'
+  | 'invalid-pool-name'
   | 'no-data-vdev'
   | 'vdev-disk-count'
   | 'log-vdev-type'
