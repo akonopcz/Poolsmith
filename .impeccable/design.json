@@ -871,13 +871,13 @@
       "topBar": "56px",
       "footer": "32px",
       "estimateBar": "full width above the columns, 72px tall when closed",
-      "columns": "minmax(320px, 2fr) minmax(480px, 3fr)",
+      "columns": "hardware as wide as its enclosures (340px to half the window, draggable), pool the rest (min 480px)",
       "columnPadding": "20px 24px 32px",
       "exportMaxWidth": "860px",
-      "bayHeights": {
-        "lff": "58px",
-        "sff": "84px",
-        "m2": "48px"
+      "baySizes": {
+        "lff": "88x64px",
+        "sff": "48x96px",
+        "m2": "104x56px"
       }
     },
     "focusRing": {

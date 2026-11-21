@@ -3,6 +3,7 @@
   import DiskTile from './DiskTile.svelte'
   import { removeEnclosure } from '../core/edit'
   import { bayColumns } from '../core/enclosure'
+  import { BAY_SIZE, enclosureWidth } from './bays'
   import Icon from './Icon.svelte'
   import { store } from './store.svelte'
   import Term from './Term.svelte'
@@ -27,12 +28,10 @@
   const formFactor = $derived(enclosure.bays[0]?.formFactor ?? 'lff')
   const columns = $derived(bayColumns(enclosure))
 
-  // Smallest and largest width of one bay. The block shrinks to share a row with others and
-  // stops growing before bays turn into wide slabs.
-  const BAY_WIDTH = { sff: [36, 64], lff: [56, 96], m2: [56, 96] } as const
-  const width = $derived(
-    BAY_WIDTH[formFactor].map((bay) => columns * bay + (columns - 1) * 4) as [number, number],
-  )
+  // Bays keep one scale and only shrink when the column is too narrow.
+  const bayWidth = $derived(BAY_SIZE[formFactor][0])
+  const bayHeight = $derived(BAY_SIZE[formFactor][1])
+  const width = $derived(enclosureWidth(enclosure))
 
   // An empty field drops the stored value, so the grid falls back to the guess.
   function setColumns(event: Event) {
@@ -56,8 +55,9 @@
   class="enclosure"
   data-flag={flag}
   data-part={enclosure.id}
-  style:flex-basis="{width[0]}px"
-  style:max-width="{width[1]}px"
+  style:width="{width}px"
+  style:--bay-width="{bayWidth}px"
+  style:--bay-height="{bayHeight}px"
 >
   <div class="head">
     <input class="name" bind:value={enclosure.name} aria-label="Enclosure name" />
@@ -138,8 +138,8 @@
 
 <style>
   .enclosure {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 0 1 auto;
+    max-width: 100%;
     margin-bottom: 24px;
   }
 
@@ -253,21 +253,12 @@
 
   .bays {
     display: grid;
-    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    grid-template-columns: repeat(var(--columns), minmax(0, var(--bay-width)));
     gap: 4px;
   }
 
   .slot {
-    height: 58px;
-  }
-
-  /* Tall enough for a code that wraps under the bay number and a size on two lines. */
-  .sff .slot {
-    height: 84px;
-  }
-
-  .m2 .slot {
-    height: 48px;
+    height: var(--bay-height);
   }
 
   .empty {

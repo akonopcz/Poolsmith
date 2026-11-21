@@ -193,13 +193,13 @@ components:
     backgroundColor: '{colors.bay-full}'
     textColor: '{colors.ink}'
     rounded: '{rounded.bay}'
-    padding: '4px 5px'
-    height: '58px'
+    padding: '4px 2px'
+    height: '64px'
   bay-empty:
     backgroundColor: '{colors.bay-empty}'
     textColor: '{colors.ink-3}'
     rounded: '{rounded.bay}'
-    height: '58px'
+    height: '64px'
   finding-issue:
     backgroundColor: '{colors.issue-bg}'
     textColor: '{colors.ink}'
@@ -338,9 +338,9 @@ Signals, reserved for findings and deltas.
 
 ## Layout
 
-A working screen between a 56px top bar and a 32px footer: an estimate bar across the full width, below it two columns. Hardware on the left and the pool on the right share the width 2 to 3 (at least 320px and 480px), so both grow on wide screens. Enclosures flow side by side once the hardware column fits them at their smallest bay width (SFF 36px, LFF and M.2 56px) and stop growing at 64px and 96px per bay. Each column scrolls on its own and the screen height is 100vh minus top bar and footer. The estimate bar sits on panel ground, hardware and pool on ground, separated by 1px rules; there are no boxed regions.
+A working screen between a 56px top bar and a 32px footer: an estimate bar across the full width, below it two columns. Hardware on the left is as wide as its enclosures need, at most half the window and at least 340px; the pool on the right takes the rest (at least 480px). Enclosures flow side by side when they fit, left-aligned, and the column takes the widest row. A divider between the two columns can be dragged (or moved with the arrow keys); a double-click returns to the automatic width, and the dragged width is remembered in the browser. Each column scrolls on its own and the screen height is 100vh minus top bar and footer. The estimate bar sits on panel ground, hardware and pool on ground, separated by 1px rules; there are no boxed regions.
 
-Column padding is 20px top and 24px sides, with 32px at the bottom of scroll areas. Rhythm runs on 4px steps: 4px between bays, 6px between line rows and add buttons, 8px under heads, 20 to 24px between groups and enclosures. Bay grids follow each enclosure's real column count; LFF bays are 58px tall, SFF 76px, M.2 48px.
+Column padding is 20px top and 24px sides, with 32px at the bottom of scroll areas. Rhythm runs on 4px steps: 4px between bays, 6px between line rows and add buttons, 8px under heads, 20 to 24px between groups and enclosures. Bay grids follow each enclosure's real column count at one fixed scale shaped like the carriers: SFF 48 × 96px (upright), LFF 88 × 64px (flat), M.2 104 × 56px. Bays shrink only when the column is narrower than the enclosure.
 
 The Export view is a single centred column (max 860px, 32px top padding) with tabs under the title.
 
