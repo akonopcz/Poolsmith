@@ -36,6 +36,8 @@
      their box: 0.1em by its metrics, about 0.15em as rendered at UI sizes. Text centred in a
      shape adds twice that as top padding to sit in the middle. */
   --cap-nudge: 0.3em;
+  --header-height: 56px;
+  --footer-height: 32px;
   --mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, monospace;
 }
 

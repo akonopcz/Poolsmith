@@ -338,7 +338,7 @@ Signals, reserved for findings and deltas.
 
 ## Layout
 
-A fixed three-column working screen under a 56px top bar. Hardware on the left (minmax(320px, 372px)), the pool in the centre (fluid), the estimate on the right (minmax(300px, 360px)). Each column scrolls on its own and the screen height is 100vh minus the bar. The side columns separate from the centre by ground tone (the estimate column on panel, hardware and pool on ground) and 1px rules; there are no boxed regions.
+A fixed three-column working screen between a 56px top bar and a 32px footer. Hardware on the left (minmax(320px, 372px)), the pool in the centre (fluid), the estimate on the right (minmax(300px, 360px)). Each column scrolls on its own and the screen height is 100vh minus bar and footer. The side columns separate from the centre by ground tone (the estimate column on panel, hardware and pool on ground) and 1px rules; there are no boxed regions.
 
 Column padding is 20px top and 24px sides, with 32px at the bottom of scroll areas. Rhythm runs on 4px steps: 4px between bays, 6px between line rows and add buttons, 8px under heads, 20 to 24px between groups and enclosures. Bay grids follow each enclosure's real column count; LFF bays are 58px tall, SFF 76px, M.2 48px.
 
@@ -363,9 +363,9 @@ Flat and tonal. Depth comes from three ground steps (ground, panel, raise) and 1
 
 ## Shapes
 
-Small, consistent corners that grow with the size of the part: 4px for bays, tiles, inline code and the estimate notice; 6px for buttons, fields, segmented controls and drop zones; 8px for line rows, findings, guide notes, popovers and code blocks. Bullets are pills (12px radius on a 24px height) and station dots are circles with a 4px ink ring. Lines are 5px tracks with 3px rounded ends.
+Small, consistent corners that grow with the size of the part: 4px for bays, tiles, inline code and the pool letter badge; 6px for buttons, fields, segmented controls and drop zones; 8px for line rows, findings, guide notes, popovers and code blocks. Bullets are pills (12px radius on a 24px height) and station dots are circles with a 4px ink ring. Lines are 5px tracks with 3px rounded ends.
 
-Dashed borders mean "empty, drop here": drop zones and empty support rows use 1.5px dashed strong rules, an empty line track is a 3px dashed line at 60% ink, the estimate notice is a 1px dashed box, and a disk taken by another pool shows a dashed tile on no fill.
+Dashed borders mean "empty, drop here": drop zones and empty support rows use 1.5px dashed strong rules, an empty line track is a 3px dashed line at 60% ink, and a disk taken by another pool shows a dashed tile on no fill.
 
 ## Components
 
@@ -393,7 +393,8 @@ Quiet signage controls; porcelain is reserved for the one primary action in view
 
 ### Navigation
 
-- **Top bar:** 56px, panel ground, bottom rule. Wordmark, plan name, the dashed "All numbers are estimates" notice, then quiet New/Open/Save, the theme toggle and the primary Export.
+- **Top bar:** 56px, panel ground, bottom rule. Wordmark, plan name, then quiet "New plan", "Open plan file…" and "Save plan file", the theme toggle and the primary Export.
+- **Footer:** 32px, panel ground, top rule, always in view. ink-3 at 12px: the estimates notice on the left, "Poolsmith only plans" on the right. On small screens it stacks at the end of the page.
 - **Tabs:** 40px tall, 14px padding, ink-2 at 600; the active tab is ink with a 3px inset underline. Pool tabs end with a quieter "+ New pool".
 
 ### Line bullet (signature)

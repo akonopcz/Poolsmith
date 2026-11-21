@@ -220,10 +220,6 @@
       </p>
     </details>
   {/if}
-
-  <p class="footnote">
-    All numbers are estimates. Compression, metadata and fragmentation are not predictable.
-  </p>
 </aside>
 
 <style>
@@ -476,11 +472,5 @@
   tr.current td {
     background: var(--mark);
     font-weight: 700;
-  }
-
-  .footnote {
-    margin-top: 16px;
-    font-size: 12px;
-    color: var(--ink-3);
   }
 </style>
