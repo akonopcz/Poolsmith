@@ -35,8 +35,8 @@ ashift 12, recordsize 128K.
 
 ### Layout
 
-- Data: raidz2 of h0, h1, h2, h3, h4, h5 (tank-data-0)
-- Special: mirror of s0, s1 (tank-special-0)
+- Data D1: raidz2 of h0, h1, h2, h3, h4, h5
+- Special S1: mirror of s0, s1
 - Spare: h6
 
 ### Capacity
@@ -56,13 +56,15 @@ From raw to reported:
 - Parity, copies and padding at 128K: 16.02 TB (14.57 TiB)
 - Slop space: 126 GB (117.34 GiB)
 
-Disks the vdevs may lose: tank-data-0 2, tank-special-0 1.
+Disks each vdev may lose: D1 2, S1 1.
+
+The pool may lose any 1 disk.
 
 ### Space efficiency per block size
 
 Usable space if every block had this size, uncompressed.
 
-| Block size | Usable | tank-data-0 |
+| Block size | Usable | D1 |
 | --- | --- | --- |
 | 4K | 16 TB (14.55 TiB) | 33.3% |
 | 8K | 16 TB (14.55 TiB) | 33.3% |
