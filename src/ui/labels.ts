@@ -71,20 +71,6 @@ export function bayLabel(host: Host, diskId: string): string {
 }
 
 /**
- * Core messages end with "Disks: <id>, <id>". Disk ids appear nowhere else in the UI, so show
- * where the disks sit instead. Only the wording changes.
- */
-export function readableMessage(host: Host, message: string): string {
-  return message.replace(/Disks: (.+)$/, (_, list: string) => {
-    const names = list.split(', ').map((id) => {
-      const name = stationName(host, id)
-      return name === 'no bay' ? id : name
-    })
-    return `Disks: ${names.join(', ')}`
-  })
-}
-
-/**
  * All ids a finding touches, widened so the UI can light up the parts a user sees: a vdev
  * brings its disks, a disk its bay. Controller and enclosure findings already name their disks.
  */

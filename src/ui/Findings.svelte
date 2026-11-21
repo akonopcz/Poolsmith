@@ -1,6 +1,5 @@
 <script lang="ts">
   import Icon from './Icon.svelte'
-  import { readableMessage } from './labels'
   import { store, type Finding } from './store.svelte'
 
   let { findings, compact = false }: { findings: Finding[]; compact?: boolean } = $props()
@@ -36,7 +35,7 @@
         <Icon name={ICON[finding.severity]} />
         <span>
           {#if !compact}<strong>{LABEL[finding.severity]}.</strong>{/if}
-          {readableMessage(store.plan.host, finding.message)}.
+          {finding.message}.
         </span>
       </button>
     </li>
