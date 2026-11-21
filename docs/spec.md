@@ -51,11 +51,21 @@ estimates.
 
 - Disks of different sizes in one vdev.
 - Data vdev without redundancy.
-- Special vdev without redundancy. Losing it loses the whole pool.
+- Special vdev without redundancy, or with less redundancy than the data vdevs. Losing it loses
+  the whole pool.
 - Data vdevs of different type or width in one pool.
 - raidz width outside the usual range for its parity level.
 - Disks behind a controller in RAID mode. ZFS needs direct disk access, so the controller should
   run in HBA mode.
+- `ashift` below the physical sector size of a disk. The disk then has to read and rewrite a
+  whole sector for every smaller write, and `ashift` cannot change once a vdev exists.
+- Pool disks in a USB enclosure. USB bridges often hide SMART data and drop disks under load.
+
+Hints mark a trade-off rather than a risk:
+
+- HDDs and flash in one vdev. The vdev runs at HDD speed.
+- Data vdevs with disks of different sizes. ZFS writes more to the emptier vdev, so load and fill
+  level end up uneven.
 
 ### Files
 
