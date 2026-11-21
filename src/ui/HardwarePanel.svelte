@@ -52,7 +52,7 @@
     {/if}
 
     {#each store.plan.host.enclosures as enclosure (enclosure.id)}
-      <EnclosureBlock {enclosure} />
+      <EnclosureBlock enclosureId={enclosure.id} />
     {/each}
 
     {#if loose.length > 0}
