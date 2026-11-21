@@ -39,7 +39,7 @@ describe('findWarnings', () => {
       {
         code: 'special-less-redundant',
         severity: 'warning',
-        message: 'Special vdev may lose 1 disks, the data vdevs 2. Losing it loses the whole pool',
+        message: 'Special vdev may lose 1 disk, the data vdevs 2. Losing it loses the whole pool',
         ids: ['tank-special-0'],
       },
     ])
@@ -162,6 +162,15 @@ describe('findWarnings', () => {
       pool(plan).data.push({ id: 'v1', type: 'mirror', diskIds: ['h6', 'h7'] })
       plan.host.disks.push(hdd('h7'))
       expect(codes(plan)).toEqual(['mixed-data-vdevs'])
+    })
+
+    it('counts disks in the plural from two on', () => {
+      const plan = examplePlan()
+      pool(plan).data[0].type = 'raidz3'
+      pool(plan).special[0].diskIds.push('s2')
+      expect(findWarnings(plan)[0].message).toBe(
+        'Special vdev may lose 2 disks, the data vdevs 3. Losing it loses the whole pool',
+      )
     })
   })
 

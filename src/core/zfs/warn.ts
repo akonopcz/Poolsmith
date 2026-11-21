@@ -95,7 +95,7 @@ function warnRedundancy(pool: ZfsPool): Warning[] {
       warnings.push({
         code: 'special-less-redundant',
         severity: 'warning',
-        message: `Special vdev may lose ${tolerance} disks, the data vdevs ${dataTolerance}. Losing it loses the whole pool`,
+        message: `Special vdev may lose ${tolerance} ${tolerance === 1 ? 'disk' : 'disks'}, the data vdevs ${dataTolerance}. Losing it loses the whole pool`,
         ids: [vdev.id],
       })
     }

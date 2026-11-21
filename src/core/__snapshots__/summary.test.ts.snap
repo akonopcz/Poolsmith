@@ -7,7 +7,7 @@ Host: DL380 Gen9. Planned with poolsmith. All capacity and speed figures are est
 
 ## Warnings
 
-- Warning: Special vdev may lose 1 disks, the data vdevs 2. Losing it loses the whole pool
+- Warning: Special vdev may lose 1 disk, the data vdevs 2. Losing it loses the whole pool
 
 ## Disks
 
