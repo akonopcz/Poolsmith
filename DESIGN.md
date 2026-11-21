@@ -409,6 +409,7 @@ A raised row (raise fill, 1px rule border, 8px radius) in one line: the bullet w
 
 - **Empty bay:** bay-empty fill, 4px radius, 10px bay number top left, a plus icon appearing on hover.
 - **Disk tile:** bay-full fill with a strong-rule border, bay number and bullet in the head row, size (700, 12px) and type (10px) below. A placed disk tints its border toward the line ink. Picked uses the focus border and ring; dragging drops it to 40% opacity; a disk owned by another pool is dashed and unfilled. A finding shows as an 8px dot bottom right in issue, warning or info colour, and issues and warnings also colour the border.
+- **Moving:** a tile dragged onto another bay moves there, or swaps with the disk in it; the target bay gets a 2px focus outline. While a tile is dragged, "Disks without a bay" appears as a drop zone. Enclosures reorder by the six-dot grip or the up and down buttons, all to the right of the name beside the trash icon. A hovered target gets a dashed focus frame with a 6% tint, drawn behind the content 12px out on every side so it never crosses text; "Disks without a bay" uses the same frame.
 
 ### Findings
 

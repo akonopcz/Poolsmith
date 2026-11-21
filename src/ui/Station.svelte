@@ -30,7 +30,7 @@
   draggable="true"
   ondragstart={(e) => {
     e.stopPropagation()
-    startDrag(e, diskId)
+    startDrag(e, diskId, 'pool')
   }}
   ondragend={endDrag}
   onclick={(e) => {

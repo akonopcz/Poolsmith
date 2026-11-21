@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Enclosure } from '../core/model'
   import DiskTile from './DiskTile.svelte'
-  import { removeEnclosure } from '../core/edit'
+  import { bayTarget, endDrag, enclosureTarget, startEnclosureDrag } from './dnd'
+  import { moveEnclosure, removeEnclosure } from '../core/edit'
   import { bayColumns } from '../core/enclosure'
   import { BAY_SIZE } from './bays'
   import Icon from './Icon.svelte'
@@ -38,6 +39,8 @@
     else if (Number.isNaN(value)) delete enclosure.columns
   }
   const flag = $derived(store.flagged.get(enclosure.id))
+  const index = $derived(store.plan.host.enclosures.findIndex((e) => e.id === enclosureId))
+  const count = $derived(store.plan.host.enclosures.length)
   const diskCount = $derived(enclosure.bays.filter((b) => b.diskId !== undefined).length)
 
   function remove() {
@@ -55,9 +58,43 @@
   data-part={enclosure.id}
   style:width="{width}px"
   style:--bay-height="{bayHeight}px"
+  class:dragged={store.draggingEnclosure === enclosureId}
+  use:enclosureTarget={enclosureId}
 >
   <div class="head">
     <input class="name" bind:value={enclosure.name} aria-label="Enclosure name" />
+    {#if count > 1}
+      <span
+        class="grip edit-only"
+        draggable="true"
+        ondragstart={(e) => startEnclosureDrag(e, enclosureId)}
+        ondragend={endDrag}
+        title="Drag onto another enclosure to change the order"
+        aria-hidden="true"
+      >
+        <Icon name="grip" />
+      </span>
+    {/if}
+    {#if count > 1}
+      <button
+        class="btn icon small quiet edit-only"
+        onclick={() => moveEnclosure(store.plan, enclosureId, index - 1)}
+        disabled={index === 0}
+        aria-label="Move {enclosure.name} earlier"
+        title="Move earlier"
+      >
+        <span class="turn up"><Icon name="chevron" /></span>
+      </button>
+      <button
+        class="btn icon small quiet edit-only"
+        onclick={() => moveEnclosure(store.plan, enclosureId, index + 1)}
+        disabled={index === count - 1}
+        aria-label="Move {enclosure.name} later"
+        title="Move later"
+      >
+        <span class="turn down"><Icon name="chevron" /></span>
+      </button>
+    {/if}
     <button
       class="btn icon small quiet danger edit-only"
       onclick={remove}
@@ -111,7 +148,7 @@
 
   <div class="bays {formFactor}" style:--columns={columns}>
     {#each enclosure.bays as bay (bay.id)}
-      <div class="slot">
+      <div class="slot" use:bayTarget={bay.id}>
         {#if bay.diskId !== undefined}
           <DiskTile diskId={bay.diskId} bayLabel={bay.label} />
         {:else}
@@ -135,6 +172,8 @@
 
 <style>
   .enclosure {
+    position: relative;
+    isolation: isolate;
     flex: 0 1 auto;
     max-width: 100%;
     margin-bottom: 24px;
@@ -144,6 +183,57 @@
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .grip {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 28px;
+    color: var(--ink-3);
+    cursor: grab;
+    stroke-width: 2.4;
+  }
+
+  .grip :global(svg) {
+    stroke-width: 2.6;
+  }
+
+  .turn {
+    display: inline-flex;
+  }
+
+  .turn.up {
+    transform: rotate(-90deg);
+  }
+
+  .turn.down {
+    transform: rotate(90deg);
+  }
+
+  .enclosure.dragged {
+    opacity: 0.4;
+  }
+
+  /* Another enclosure hovers here: it will take this position. */
+  /* Another enclosure hovers here and will take this position. The frame sits behind the
+     content with room on every side, so it never runs through text. */
+  .enclosure:global([data-over])::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    z-index: -1;
+    border: 1.5px dashed var(--focus);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--focus) 6%, transparent);
+    pointer-events: none;
+  }
+
+  /* A disk from another bay hovers here. */
+  .slot:global([data-over]) {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+    border-radius: 4px;
   }
 
   .name,

@@ -43,7 +43,8 @@ class Store {
   /** Disk picked by click, waiting for a click on a target. */
   picked = $state<string | null>(null)
   /** Disk being dragged. */
-  dragging = $state<string | null>(null)
+  dragging = $state<{ diskId: string; from: 'hardware' | 'pool' } | null>(null)
+  draggingEnclosure = $state<string | null>(null)
   editor = $state<Editor | null>(null)
   /** Problems from the last file that failed to load. */
   loadErrors = $state<string[] | null>(null)
