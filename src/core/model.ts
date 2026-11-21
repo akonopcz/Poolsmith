@@ -30,7 +30,7 @@ export interface Controller {
 export interface Enclosure {
   id: string
   name: string
-  kind: 'chassis' | 'shelf'
+  kind: 'chassis' | 'shelf' | 'usb'
   bays: Bay[]
 }
 

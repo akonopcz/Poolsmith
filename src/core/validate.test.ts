@@ -22,6 +22,18 @@ describe('validatePlan', () => {
     expect(validatePlan(plan)).toEqual([])
   })
 
+  it('accepts a USB enclosure', () => {
+    const plan = examplePlan()
+    plan.host.disks.push(hdd('usb-disk'))
+    plan.host.enclosures.push({
+      id: 'usb',
+      name: 'USB enclosure',
+      kind: 'usb',
+      bays: [{ id: 'usb-0', label: '0', formFactor: 'lff', diskId: 'usb-disk' }],
+    })
+    expect(validatePlan(plan)).toEqual([])
+  })
+
   it('accepts a bay without a controller as directly attached', () => {
     const plan = examplePlan()
     delete plan.host.enclosures[0].bays[0].controllerId
