@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { examplePlan } from '../testing'
-import { vdevCodes } from './codes'
+import { poolLetters, vdevCodes } from './codes'
 
 describe('vdevCodes', () => {
   it('numbers vdevs per class in pool order', () => {
@@ -13,5 +13,13 @@ describe('vdevCodes', () => {
       ['tank-special-0', 'S1'],
       ['log', 'L1'],
     ])
+  })
+})
+
+describe('poolLetters', () => {
+  it('letters pools in order and continues after Z', () => {
+    const pools = Array.from({ length: 28 }, (_, i) => ({ id: `p${i}` }))
+    const letters = poolLetters(pools)
+    expect([0, 1, 25, 26, 27].map((i) => letters.get(`p${i}`))).toEqual(['A', 'B', 'Z', 'AA', 'AB'])
   })
 })
