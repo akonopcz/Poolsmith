@@ -220,3 +220,30 @@ export function removeVdev(pool: ZfsPool, vdevId: string): void {
     pool[group] = pool[group].filter((v) => v.id !== vdevId)
   }
 }
+
+/** Puts an enclosure at a new position in the host's list. */
+export function moveEnclosure(plan: Plan, enclosureId: string, index: number): void {
+  const list = plan.host.enclosures
+  const from = list.findIndex((e) => e.id === enclosureId)
+  if (from < 0) return
+  const [enclosure] = list.splice(from, 1)
+  list.splice(Math.max(0, Math.min(index, list.length)), 0, enclosure)
+}
+
+/**
+ * Moves a disk into another bay, or out of every bay with `null`. A disk already in the target
+ * bay swaps places with it; if the moved disk had no bay, that one ends up without a bay. Pools
+ * keep their disks, since only the physical slot changes.
+ */
+export function moveDiskToBay(plan: Plan, diskId: string, bayId: string | null): void {
+  const bays = plan.host.enclosures.flatMap((e) => e.bays)
+  const from = bays.find((b) => b.diskId === diskId)
+  const to = bayId === null ? undefined : bays.find((b) => b.id === bayId)
+  if ((bayId !== null && to === undefined) || from === to) return
+  const occupant = to?.diskId
+  if (from !== undefined) {
+    if (occupant !== undefined) from.diskId = occupant
+    else delete from.diskId
+  }
+  if (to !== undefined) to.diskId = diskId
+}

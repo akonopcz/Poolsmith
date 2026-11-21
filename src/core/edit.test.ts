@@ -8,6 +8,8 @@ import {
   addLooseDisk,
   addPool,
   emptyPlan,
+  moveDiskToBay,
+  moveEnclosure,
   placeDisk,
   removeDisk,
   removeEnclosure,
@@ -189,5 +191,46 @@ describe('removeVdev', () => {
     const pool = plan.layouts[0]
     removeVdev(pool, 'hdd01-special-0')
     expect(pool.special).toEqual([])
+  })
+})
+
+describe('moveEnclosure', () => {
+  it('puts the enclosure at the new position', () => {
+    const plan = examplePlan()
+    moveEnclosure(plan, 'ds4246', 0)
+    expect(plan.host.enclosures.map((e) => e.id)).toEqual(['ds4246', 'dl380'])
+    moveEnclosure(plan, 'ds4246', 9)
+    expect(plan.host.enclosures.map((e) => e.id)).toEqual(['dl380', 'ds4246'])
+  })
+})
+
+describe('moveDiskToBay', () => {
+  const bayOf = (plan: ReturnType<typeof examplePlan>, diskId: string) =>
+    plan.host.enclosures.flatMap((e) => e.bays).find((b) => b.diskId === diskId)?.id
+
+  it('moves a disk into an empty bay and keeps it in its pool', () => {
+    const plan = examplePlan()
+    moveDiskToBay(plan, 'h0', 'ds4246-10')
+    expect(bayOf(plan, 'h0')).toBe('ds4246-10')
+    expect(plan.host.enclosures[1].bays[0].diskId).toBeUndefined()
+    expect(plan.layouts[0].data[0].diskIds).toContain('h0')
+    expect(validatePlan(plan)).toEqual([])
+  })
+
+  it('swaps with the disk already in the bay', () => {
+    const plan = examplePlan()
+    moveDiskToBay(plan, 's2', 'ds4246-0')
+    expect(bayOf(plan, 's2')).toBe('ds4246-0')
+    expect(bayOf(plan, 'h0')).toBe('dl380-2')
+  })
+
+  it('takes a disk out of every bay, and a loose disk into a bay', () => {
+    const plan = examplePlan()
+    moveDiskToBay(plan, 'h6', null)
+    expect(bayOf(plan, 'h6')).toBeUndefined()
+    moveDiskToBay(plan, 'h6', 'ds4246-0')
+    expect(bayOf(plan, 'h6')).toBe('ds4246-0')
+    expect(bayOf(plan, 'h0')).toBeUndefined()
+    expect(validatePlan(plan)).toEqual([])
   })
 })
