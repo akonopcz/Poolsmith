@@ -23,3 +23,9 @@ export function minDisks(type: VdevType): number {
 export function faultTolerance(vdev: Vdev): number {
   return vdev.type === 'mirror' ? vdev.diskIds.length - 1 : PARITY[vdev.type]
 }
+
+/** Whether ZFS accepts the vdev's disk count. Half-built vdevs fail this while planning. */
+export function hasValidDiskCount(vdev: Vdev): boolean {
+  const count = vdev.diskIds.length
+  return vdev.type === 'disk' ? count === 1 : count >= minDisks(vdev.type)
+}

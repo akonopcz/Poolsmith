@@ -1,6 +1,6 @@
 import type { Bytes, Disk } from '../model'
 import type { Vdev, ZfsPool } from './model'
-import { minDisks, PARITY } from './topology'
+import { hasValidDiskCount, PARITY } from './topology'
 
 const MIN_TABLE_MAX_BLOCK = 1024 * 1024
 
@@ -101,11 +101,6 @@ function withEfficiency(data: number, redundancy: number, padding: number): Bloc
     paddingSectors: padding,
     efficiency: data / (data + redundancy + padding),
   }
-}
-
-function hasValidDiskCount(vdev: Vdev): boolean {
-  const count = vdev.diskIds.length
-  return vdev.type === 'disk' ? count === 1 : count >= minDisks(vdev.type)
 }
 
 function allocated(allocation: BlockAllocation): number {
