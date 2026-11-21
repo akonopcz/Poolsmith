@@ -1,4 +1,4 @@
-import type { Vdev, VdevType } from './model'
+import type { Vdev, VdevType, ZfsPool } from './model'
 
 export const PARITY: Record<VdevType, number> = {
   disk: 0,
@@ -28,4 +28,14 @@ export function faultTolerance(vdev: Vdev): number {
 export function hasValidDiskCount(vdev: Vdev): boolean {
   const count = vdev.diskIds.length
   return vdev.type === 'disk' ? count === 1 : count >= minDisks(vdev.type)
+}
+
+/**
+ * Disks the pool may lose in any combination: the weakest data or special vdev decides, because
+ * losing either kind loses the pool. Log, cache and spare do not count. Half-built vdevs are
+ * skipped; undefined while the pool has no data vdev with a valid disk count.
+ */
+export function poolFaultTolerance(pool: ZfsPool): number | undefined {
+  if (!pool.data.some(hasValidDiskCount)) return undefined
+  return Math.min(...[...pool.data, ...pool.special].filter(hasValidDiskCount).map(faultTolerance))
 }
