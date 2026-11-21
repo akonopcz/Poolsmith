@@ -1,4 +1,5 @@
-import type { Bytes, Disk } from '../model'
+import { formatDecimal } from '../format'
+import type { Disk } from '../model'
 import type { Warning } from '../warning'
 import type { Vdev, VdevType, ZfsPool } from './model'
 import { faultTolerance } from './topology'
@@ -36,7 +37,7 @@ function warnVdev(vdev: Vdev, members: Disk[]): Warning[] {
     warnings.push({
       code: 'mixed-disk-sizes',
       severity: 'warning',
-      message: `${vdev.type} vdev mixes disk sizes. Every disk counts as ${formatBytes(smallest)}, so ${formatBytes(unused)} stay unused`,
+      message: `${vdev.type} vdev mixes disk sizes. Every disk counts as ${formatDecimal(smallest)}, so ${formatDecimal(unused)} stay unused`,
       ids: [vdev.id],
     })
   }
@@ -152,9 +153,4 @@ function warnAshift(pool: ZfsPool, byId: Map<string, Disk>): Warning[] {
       ids: [pool.id, ...affected],
     },
   ]
-}
-
-function formatBytes(bytes: Bytes): string {
-  const [unit, factor] = bytes >= 1e12 ? ['TB', 1e12] : ['GB', 1e9]
-  return `${Number((bytes / factor).toFixed(2))} ${unit}`
 }
