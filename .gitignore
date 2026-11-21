@@ -18,3 +18,6 @@ coverage/
 
 # Real pool plans stay out of the public repo
 plans/
+
+# Impeccable design mocks and screenshots
+.impeccable/mocks/
