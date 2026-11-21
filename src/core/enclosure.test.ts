@@ -15,6 +15,13 @@ describe('bayColumns', () => {
     expect(bayColumns(shelf)).toBe(6)
   })
 
+  it('never uses more columns than bays', () => {
+    const shelf = examplePlan().host.enclosures[1]
+    shelf.columns = 30
+    expect(bayColumns(shelf)).toBe(24)
+    expect(bayColumns({ ...shelf, columns: undefined, bays: shelf.bays.slice(0, 2) })).toBe(2)
+  })
+
   it('ignores a stored value that is not a positive whole number', () => {
     const shelf = examplePlan().host.enclosures[1]
     shelf.columns = 0
