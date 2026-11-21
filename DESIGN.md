@@ -338,7 +338,7 @@ Signals, reserved for findings and deltas.
 
 ## Layout
 
-A fixed three-column working screen between a 56px top bar and a 32px footer. Hardware on the left (minmax(320px, 372px)), the pool in the centre (fluid), the estimate on the right (minmax(300px, 360px)). Each column scrolls on its own and the screen height is 100vh minus bar and footer. The side columns separate from the centre by ground tone (the estimate column on panel, hardware and pool on ground) and 1px rules; there are no boxed regions.
+A fixed three-column working screen between a 56px top bar and a 32px footer. Hardware on the left and the pool in the centre share the width 2 to 3 (at least 320px and 480px), so hardware grows on wide screens; the estimate on the right stays at minmax(300px, 360px). Enclosures flow side by side once the hardware column fits them at their smallest bay width (SFF 36px, LFF and M.2 56px) and stop growing at 64px and 96px per bay. Each column scrolls on its own and the screen height is 100vh minus bar and footer. The side columns separate from the centre by ground tone (the estimate column on panel, hardware and pool on ground) and 1px rules; there are no boxed regions.
 
 Column padding is 20px top and 24px sides, with 32px at the bottom of scroll areas. Rhythm runs on 4px steps: 4px between bays, 6px between line rows and add buttons, 8px under heads, 20 to 24px between groups and enclosures. Bay grids follow each enclosure's real column count; LFF bays are 58px tall, SFF 76px, M.2 48px.
 
