@@ -131,7 +131,7 @@
 
 <style>
   .export {
-    height: calc(100vh - 56px);
+    height: calc(100vh - var(--header-height) - var(--footer-height));
     overflow-y: auto;
   }
 

@@ -40,7 +40,6 @@
     <span class="visually-hidden">Plan name</span>
     <input bind:value={store.plan.name} spellcheck="false" />
   </label>
-  <span class="estimate">All numbers are estimates</span>
   <span class="mobile-only desktop-note">Editing needs a desktop.</span>
 
   <div class="actions">
@@ -100,7 +99,7 @@
 
 <style>
   header {
-    height: 56px;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -148,15 +147,6 @@
     background: var(--raise);
   }
 
-  .estimate {
-    font-size: 12px;
-    color: var(--ink-2);
-    border: 1px dashed var(--ink-3);
-    border-radius: 4px;
-    padding: 2px 8px;
-    white-space: nowrap;
-  }
-
   .desktop-note {
     font-size: 12px;
     color: var(--ink-2);
@@ -200,10 +190,6 @@
       height: auto;
       padding: 10px 16px;
       gap: 8px;
-    }
-
-    .estimate {
-      order: 3;
     }
 
     .actions {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import ExportView from './ui/ExportView.svelte'
+  import Footer from './ui/Footer.svelte'
   import HardwarePanel from './ui/HardwarePanel.svelte'
   import PoolPanel from './ui/PoolPanel.svelte'
   import ResultsPanel from './ui/ResultsPanel.svelte'
@@ -29,12 +30,13 @@
 {:else}
   <ExportView />
 {/if}
+<Footer />
 
 <style>
   .planner {
     display: grid;
     grid-template-columns: minmax(320px, 372px) minmax(0, 1fr) minmax(300px, 360px);
-    height: calc(100vh - 56px);
+    height: calc(100vh - var(--header-height) - var(--footer-height));
   }
 
   /* Small screens show the plan for reading. Editing stays a desktop task. */
