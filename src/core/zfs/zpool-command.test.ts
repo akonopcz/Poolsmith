@@ -28,7 +28,7 @@ describe('zpoolCreateCommand', () => {
         'zpool create \\',
         '  -o ashift=12 \\',
         '  -O recordsize=128K \\',
-        '  tank \\',
+        '  hdd01 \\',
         '  raidz2 <disk:h0> <disk:h1> <disk:h2> <disk:h3> <disk:h4> <disk:h5> \\',
         '  special mirror <disk:s0> <disk:s1> \\',
         '  log <disk:s2> \\',
@@ -55,7 +55,7 @@ describe('zpoolCreateCommand', () => {
       spare: [],
     }
     const lines = zpoolCreateCommand(pool, plan.host).split('\n')
-    expect(lines.slice(lines.indexOf('  tank \\') + 1)).toEqual([
+    expect(lines.slice(lines.indexOf('  hdd01 \\') + 1)).toEqual([
       '  <disk:h0> \\',
       '  <disk:h1> \\',
       '  special mirror <disk:s0> <disk:s1> \\',

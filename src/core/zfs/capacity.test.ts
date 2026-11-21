@@ -28,13 +28,13 @@ describe('computeNaiveCapacity', () => {
       rawBytes: 48 * TB,
       usableBytes: 32 * TB,
       vdevs: [
-        { vdevId: 'tank-data-0', rawBytes: 48 * TB, usableBytes: 32 * TB, faultTolerance: 2 },
+        { vdevId: 'hdd01-data-0', rawBytes: 48 * TB, usableBytes: 32 * TB, faultTolerance: 2 },
       ],
     })
     expect(capacity.special).toEqual({
       rawBytes: 2 * TB,
       usableBytes: TB,
-      vdevs: [{ vdevId: 'tank-special-0', rawBytes: 2 * TB, usableBytes: TB, faultTolerance: 1 }],
+      vdevs: [{ vdevId: 'hdd01-special-0', rawBytes: 2 * TB, usableBytes: TB, faultTolerance: 1 }],
     })
     expect(capacity.log).toEqual({ rawBytes: 0, usableBytes: 0, vdevs: [] })
   })

@@ -34,7 +34,7 @@ export function emptyPlan(): Plan {
     schemaVersion: SCHEMA_VERSION,
     name: 'my-plan',
     host: { name: 'server', controllers: [], enclosures: [], disks: [] },
-    layouts: [emptyPool('tank', 'tank')],
+    layouts: [emptyPool('pool-1', 'pool01')],
   }
 }
 
@@ -77,8 +77,9 @@ export function vdevsOf(pool: ZfsPool): Vdev[] {
 
 export function addPool(plan: Plan): ZfsPool {
   const names = new Set(plan.layouts.map((p) => p.name))
-  let name = 'tank'
-  for (let n = 2; names.has(name); n++) name = `tank${n}`
+  // Numbered with two digits, so names sort well and a plan with many pools stays readable.
+  let name = 'pool01'
+  for (let n = 2; names.has(name); n++) name = `pool${String(n).padStart(2, '0')}`
   const pool = emptyPool(uniqueId(plan, 'pool'), name)
   plan.layouts.push(pool)
   return pool

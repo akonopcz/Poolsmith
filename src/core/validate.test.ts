@@ -111,7 +111,7 @@ describe('validatePlan', () => {
       '',
       '1tank',
       '_tank',
-      'tank/data',
+      'hdd01/data',
       'tänk',
       'log',
       'mirror',
@@ -124,7 +124,7 @@ describe('validatePlan', () => {
       expect(codes(plan)).toEqual(['invalid-pool-name'])
     })
 
-    it.each(['tank', 'Tank-01', 'fast_pool', 'pool:a.b', 'my pool', 'logs', 'Mirror'])(
+    it.each(['hdd01', 'Tank-01', 'fast_pool', 'pool:a.b', 'my pool', 'logs', 'Mirror'])(
       'accepts pool name "%s"',
       (name) => {
         const plan = examplePlan()

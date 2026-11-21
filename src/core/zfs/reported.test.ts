@@ -43,7 +43,7 @@ describe('computeReportedCapacity', () => {
 
     expect(capacity.vdevs).toEqual([
       {
-        vdevId: 'tank-data-0',
+        vdevId: 'hdd01-data-0',
         asizeBytes: 47_999_971_491_840,
         metaslabShift: 34,
         metaslabCount: 2793,

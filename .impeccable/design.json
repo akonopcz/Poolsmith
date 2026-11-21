@@ -915,7 +915,7 @@
       "kind": "input",
       "refersTo": "field-input",
       "description": "Labelled input or select on the raise ground.",
-      "html": "<label class=\"ds-field\">Pool name<input value=\"tank\" /></label>",
+      "html": "<label class=\"ds-field\">Pool name<input value=\"hdd01\" /></label>",
       "css": ".ds-field { display: grid; gap: 4px; font: 400 12px/1.45 'Overpass Variable', system-ui, sans-serif; color: var(--ink-2); } .ds-field input { height: 32px; padding: 0 8px; border: 1px solid var(--rule-strong); border-radius: 6px; background: var(--raise); color: var(--ink); font: 600 14px/1 'Overpass Variable', system-ui, sans-serif; } .ds-field input:hover { border-color: var(--ink-3); } .ds-field input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }"
     },
     {
@@ -931,7 +931,7 @@
       "kind": "nav",
       "refersTo": "tab",
       "description": "Tabs for pools and export formats, active tab underlined in ink.",
-      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">tank</button><button role=\"tab\" aria-selected=\"false\">backup</button><button role=\"tab\" class=\"ds-tab-new\">+ New pool</button></div>",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">hdd01</button><button role=\"tab\" aria-selected=\"false\">ssd01</button><button role=\"tab\" class=\"ds-tab-new\">+ New pool</button></div>",
       "css": ".ds-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--rule); } .ds-tabs button { height: 40px; padding: 0 14px; border: 0; background: none; color: var(--ink-2); font: 600 14px/1 'Overpass Variable', system-ui, sans-serif; cursor: pointer; } .ds-tabs button:hover { color: var(--ink); } .ds-tabs button[aria-selected='true'] { color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); } .ds-tabs .ds-tab-new { color: var(--ink-3); } .ds-tabs button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }"
     },
     {

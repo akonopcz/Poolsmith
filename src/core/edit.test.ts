@@ -43,8 +43,8 @@ describe('uniqueId', () => {
 describe('addPool', () => {
   it('picks the next free name', () => {
     const plan = emptyPlan()
-    expect(addPool(plan).name).toBe('tank2')
-    expect(addPool(plan).name).toBe('tank3')
+    expect(addPool(plan).name).toBe('pool02')
+    expect(addPool(plan).name).toBe('pool03')
   })
 })
 
@@ -150,7 +150,7 @@ describe('placeDisk', () => {
   it('moves a disk between vdevs', () => {
     const plan = examplePlan()
     const pool = plan.layouts[0]
-    placeDisk(plan, pool, 'h6', { kind: 'vdev', vdevId: 'tank-data-0' })
+    placeDisk(plan, pool, 'h6', { kind: 'vdev', vdevId: 'hdd01-data-0' })
     expect(pool.spare).toEqual([])
     expect(pool.data[0].diskIds).toHaveLength(7)
   })
@@ -168,7 +168,7 @@ describe('placeDisk', () => {
   it('does nothing when the disk is already in the target vdev', () => {
     const plan = examplePlan()
     const pool = plan.layouts[0]
-    placeDisk(plan, pool, 'h0', { kind: 'vdev', vdevId: 'tank-data-0' })
+    placeDisk(plan, pool, 'h0', { kind: 'vdev', vdevId: 'hdd01-data-0' })
     expect(pool.data[0].diskIds).toEqual(['h0', 'h1', 'h2', 'h3', 'h4', 'h5'])
   })
 
@@ -187,7 +187,7 @@ describe('removeVdev', () => {
   it('removes the vdev from its group', () => {
     const plan = examplePlan()
     const pool = plan.layouts[0]
-    removeVdev(pool, 'tank-special-0')
+    removeVdev(pool, 'hdd01-special-0')
     expect(pool.special).toEqual([])
   })
 })

@@ -35,7 +35,7 @@ function loadTheme(): Theme {
 
 class Store {
   plan = $state<Plan>(emptyPlan())
-  poolId = $state('tank')
+  poolId = $state(this.plan.layouts[0].id)
   view = $state<'plan' | 'export'>('plan')
   theme = $state<Theme>(loadTheme())
   /** Ids the pointer or keyboard focus is on. Everything else dims while it is set. */

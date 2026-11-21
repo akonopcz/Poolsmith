@@ -9,7 +9,7 @@ describe('trueNasSteps', () => {
       version: '25.10',
       steps: [
         'Open **Storage** and click **Create Pool** at the top right of the Storage Dashboard.',
-        '**General Info**: enter `tank` as **Name**. Leave **Encryption** off, the plan does not cover encryption.',
+        '**General Info**: enter `hdd01` as **Name**. Leave **Encryption** off, the plan does not cover encryption.',
         '**Data**: set **Layout** to RAIDZ2, **Width** to 6 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: h0 (8 TB HDD, DS4246 bay 0), h1 (8 TB HDD, DS4246 bay 1), h2 (8 TB HDD, DS4246 bay 2), h3 (8 TB HDD, DS4246 bay 3), h4 (8 TB HDD, DS4246 bay 4), h5 (8 TB HDD, DS4246 bay 5).',
         '**Spare (Optional)**: add h6 (8 TB HDD, DS4246 bay 6).',
         '**Metadata (Optional)**: set **Layout** to Mirror, **Width** to 2 and **Number of VDEVs** to 1. Click **Manual Disk Selection** and assign VDEV 1: s0 (1 TB SSD, DL380 Gen9 bay 0), s1 (1 TB SSD, DL380 Gen9 bay 1).',
@@ -80,7 +80,7 @@ describe('trueNasSteps', () => {
       '**Cache (Optional)**',
       'Skip **Dedup (Optional)**.',
       '**Review**',
-      'After creation, open **Datasets**, edit the root dataset `tank` and set **Record Size** to 1M under **Advanced Options**.',
+      'After creation, open **Datasets**, edit the root dataset `hdd01` and set **Record Size** to 1M under **Advanced Options**.',
     ])
   })
 })
