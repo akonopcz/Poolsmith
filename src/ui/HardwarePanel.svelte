@@ -2,6 +2,7 @@
   import DiskForm from './DiskForm.svelte'
   import DiskInspector from './DiskInspector.svelte'
   import DiskTile from './DiskTile.svelte'
+  import { enclosureWidths } from './bays'
   import { dropTarget } from './dnd'
   import EnclosureBlock from './EnclosureBlock.svelte'
   import EnclosureForm from './EnclosureForm.svelte'
@@ -13,6 +14,7 @@
   )
   const loose = $derived(store.disks.filter((d) => !bayed.has(d.id)))
   const editorKey = $derived(JSON.stringify(store.editor))
+  const widths = $derived(enclosureWidths(store.plan.host.enclosures))
 </script>
 
 <section class="hardware" use:dropTarget={{ kind: 'out' }} aria-label="Hardware">
@@ -53,7 +55,7 @@
 
     <div class="enclosures">
       {#each store.plan.host.enclosures as enclosure (enclosure.id)}
-        <EnclosureBlock enclosureId={enclosure.id} />
+        <EnclosureBlock enclosureId={enclosure.id} width={widths.get(enclosure.id)!} />
       {/each}
     </div>
 
