@@ -1,0 +1,1027 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T23:21:30+01:00",
+  "title": "Design System: Poolsmith",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Midnight Enamel",
+        "canonical": "#0a1632",
+        "tonalRamp": [
+          "#090b10",
+          "#1c2433",
+          "#36425c",
+          "#516080",
+          "#7283a7",
+          "#94a5c8",
+          "#bccbe9",
+          "#e7effe"
+        ]
+      },
+      "ground-light": {
+        "role": "neutral",
+        "displayName": "Midnight Enamel (light theme)",
+        "canonical": "#fbfbfa",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#424242",
+          "#606060",
+          "#838382",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Night Platform",
+        "canonical": "#0e1d3f",
+        "tonalRamp": [
+          "#080b11",
+          "#1b2436",
+          "#334260",
+          "#4e6086",
+          "#6e83ad",
+          "#90a5ce",
+          "#b9cbee",
+          "#e7efff"
+        ]
+      },
+      "panel-light": {
+        "role": "neutral",
+        "displayName": "Night Platform (light theme)",
+        "canonical": "#f1f2f0",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242423",
+          "#424341",
+          "#60615f",
+          "#838382",
+          "#a4a5a3",
+          "#cacbc9",
+          "#eeefed"
+        ]
+      },
+      "raise": {
+        "role": "neutral",
+        "displayName": "Lit Panel",
+        "canonical": "#142853",
+        "tonalRamp": [
+          "#080b12",
+          "#19243a",
+          "#304266",
+          "#49608d",
+          "#6983b5",
+          "#8ba5d6",
+          "#b5cbf5",
+          "#e7effe"
+        ]
+      },
+      "raise-light": {
+        "role": "neutral",
+        "displayName": "Lit Panel (light theme)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#424242",
+          "#606060",
+          "#838383",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Porcelain Signage",
+        "canonical": "#eef1ea",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#232422",
+          "#41433f",
+          "#5f615c",
+          "#82847e",
+          "#a3a69f",
+          "#c9cbc6",
+          "#edefeb"
+        ]
+      },
+      "ink-light": {
+        "role": "primary",
+        "displayName": "Porcelain Signage (light theme)",
+        "canonical": "#15181c",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#222426",
+          "#404346",
+          "#5d6165",
+          "#808389",
+          "#a1a5aa",
+          "#c7cbcf",
+          "#eceff2"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Porcelain",
+        "canonical": "#b3bdca",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#20242a",
+          "#3c434c",
+          "#59616c",
+          "#7b8490",
+          "#9ca5b1",
+          "#c3cbd5",
+          "#eaeff6"
+        ]
+      },
+      "ink-2-light": {
+        "role": "neutral",
+        "displayName": "Faded Porcelain (light theme)",
+        "canonical": "#474d56",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#212428",
+          "#3e434a",
+          "#5b616a",
+          "#7d848e",
+          "#9fa5af",
+          "#c5cbd3",
+          "#ebeff4"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Platform Grey",
+        "canonical": "#97a3b6",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#1f242d",
+          "#3a4351",
+          "#566173",
+          "#778498",
+          "#99a6b9",
+          "#c1cbdc",
+          "#e8effa"
+        ]
+      },
+      "ink-3-light": {
+        "role": "neutral",
+        "displayName": "Platform Grey (light theme)",
+        "canonical": "#5f656e",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#212428",
+          "#3e4349",
+          "#5b6169",
+          "#7d848d",
+          "#9fa5ae",
+          "#c6cbd3",
+          "#ebeff4"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Track Rule",
+        "canonical": "#20345f",
+        "tonalRamp": [
+          "#080b12",
+          "#192439",
+          "#304265",
+          "#4a608c",
+          "#6a83b4",
+          "#8ca5d5",
+          "#b6cbf4",
+          "#e7efff"
+        ]
+      },
+      "rule-light": {
+        "role": "neutral",
+        "displayName": "Track Rule (light theme)",
+        "canonical": "#dcdfdc",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#232423",
+          "#414341",
+          "#5f615f",
+          "#818481",
+          "#a3a5a3",
+          "#c9cbc9",
+          "#edefed"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": "#34497a",
+        "tonalRamp": [
+          "#080b12",
+          "#19233b",
+          "#304168",
+          "#4a5f8f",
+          "#6a82b8",
+          "#8ca4d8",
+          "#b6cbf7",
+          "#e7effe"
+        ]
+      },
+      "rule-strong-light": {
+        "role": "neutral",
+        "displayName": "Strong Rule (light theme)",
+        "canonical": "#b9bdba",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#232423",
+          "#404341",
+          "#5e615f",
+          "#808481",
+          "#a2a6a3",
+          "#c8cbc9",
+          "#edefed"
+        ]
+      },
+      "bay-empty": {
+        "role": "neutral",
+        "displayName": "Empty Bay",
+        "canonical": "#12234a",
+        "tonalRamp": [
+          "#080b11",
+          "#1a2438",
+          "#324263",
+          "#4c608a",
+          "#6c83b1",
+          "#8ea5d2",
+          "#b7cbf2",
+          "#e7efff"
+        ]
+      },
+      "bay-empty-light": {
+        "role": "neutral",
+        "displayName": "Empty Bay (light theme)",
+        "canonical": "#e8eae8",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#232423",
+          "#414341",
+          "#5f615f",
+          "#828482",
+          "#a3a5a3",
+          "#c9cbc9",
+          "#eeefee"
+        ]
+      },
+      "bay-full": {
+        "role": "neutral",
+        "displayName": "Occupied Bay",
+        "canonical": "#1a3062",
+        "tonalRamp": [
+          "#080b13",
+          "#17233c",
+          "#2e416a",
+          "#475f93",
+          "#6782bb",
+          "#89a4dc",
+          "#b3cbfa",
+          "#e7efff"
+        ]
+      },
+      "bay-full-light": {
+        "role": "neutral",
+        "displayName": "Occupied Bay (light theme)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#424242",
+          "#606060",
+          "#838383",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "on-line": {
+        "role": "neutral",
+        "displayName": "Bullet Text",
+        "canonical": "#0a1632",
+        "tonalRamp": [
+          "#090b10",
+          "#1c2433",
+          "#36425c",
+          "#516080",
+          "#7283a7",
+          "#94a5c8",
+          "#bccbe9",
+          "#e7effe"
+        ]
+      },
+      "on-line-light": {
+        "role": "neutral",
+        "displayName": "Bullet Text (light theme)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#424242",
+          "#606060",
+          "#838383",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "line-data": {
+        "role": "secondary",
+        "displayName": "Data Cobalt",
+        "canonical": "#5b93ff",
+        "tonalRamp": [
+          "#050b19",
+          "#09204f",
+          "#153c8a",
+          "#295abb",
+          "#487ee8",
+          "#72a3ff",
+          "#afcbff",
+          "#e6effe"
+        ]
+      },
+      "line-data-light": {
+        "role": "secondary",
+        "displayName": "Data Cobalt (light theme)",
+        "canonical": "#1d4fd8",
+        "tonalRamp": [
+          "#040a1c",
+          "#061c5b",
+          "#0f349d",
+          "#2151d2",
+          "#4278fc",
+          "#77a2fd",
+          "#b1cbfe",
+          "#e7effe"
+        ]
+      },
+      "line-special": {
+        "role": "secondary",
+        "displayName": "Special Violet",
+        "canonical": "#b585ff",
+        "tonalRamp": [
+          "#0d0817",
+          "#2c154a",
+          "#502881",
+          "#7142af",
+          "#9564db",
+          "#b689fc",
+          "#d3befd",
+          "#f1ebff"
+        ]
+      },
+      "line-special-light": {
+        "role": "secondary",
+        "displayName": "Special Violet (light theme)",
+        "canonical": "#7b3fc0",
+        "tonalRamp": [
+          "#0e0718",
+          "#2e114d",
+          "#522386",
+          "#743cb5",
+          "#995fe2",
+          "#b887fe",
+          "#d5bdfe",
+          "#f1ebfe"
+        ]
+      },
+      "line-log": {
+        "role": "secondary",
+        "displayName": "Log Green",
+        "canonical": "#45cf91",
+        "tonalRamp": [
+          "#020f07",
+          "#002c1a",
+          "#045032",
+          "#04734a",
+          "#119b66",
+          "#3fbf85",
+          "#83e2b1",
+          "#c3ffdd"
+        ]
+      },
+      "line-log-light": {
+        "role": "secondary",
+        "displayName": "Log Green (light theme)",
+        "canonical": "#10804f",
+        "tonalRamp": [
+          "#040e07",
+          "#002d18",
+          "#04502f",
+          "#037345",
+          "#359866",
+          "#61ba88",
+          "#96ddb3",
+          "#cdfcde"
+        ]
+      },
+      "line-cache": {
+        "role": "secondary",
+        "displayName": "Cache Teal",
+        "canonical": "#3cc6d8",
+        "tonalRamp": [
+          "#010e10",
+          "#012a2f",
+          "#084b54",
+          "#0b6d78",
+          "#1993a2",
+          "#38b7c8",
+          "#7fdbe9",
+          "#ccf8ff"
+        ]
+      },
+      "line-cache-light": {
+        "role": "secondary",
+        "displayName": "Cache Teal (light theme)",
+        "canonical": "#0a7486",
+        "tonalRamp": [
+          "#040d0f",
+          "#012931",
+          "#064b57",
+          "#096c7d",
+          "#3691a3",
+          "#62b2c4",
+          "#97d7e5",
+          "#d2f6fe"
+        ]
+      },
+      "line-spare": {
+        "role": "secondary",
+        "displayName": "Spare Grey",
+        "canonical": "#929cab",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#20242b",
+          "#3c434d",
+          "#58616e",
+          "#7a8492",
+          "#9ca5b4",
+          "#c3cbd7",
+          "#e9eff7"
+        ]
+      },
+      "line-spare-light": {
+        "role": "secondary",
+        "displayName": "Spare Grey (light theme)",
+        "canonical": "#646b75",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#212429",
+          "#3e434a",
+          "#5a616a",
+          "#7d848e",
+          "#9ea5af",
+          "#c5cbd4",
+          "#ebeff5"
+        ]
+      },
+      "issue": {
+        "role": "tertiary",
+        "displayName": "Signal Red",
+        "canonical": "#ff7b6e",
+        "tonalRamp": [
+          "#160605",
+          "#450b09",
+          "#791916",
+          "#a7302a",
+          "#d35449",
+          "#f67a6e",
+          "#ffb5ab",
+          "#ffe9e6"
+        ]
+      },
+      "issue-light": {
+        "role": "tertiary",
+        "displayName": "Signal Red (light theme)",
+        "canonical": "#b8271f",
+        "tonalRamp": [
+          "#170504",
+          "#490504",
+          "#7f0c09",
+          "#ad251d",
+          "#db4b3e",
+          "#fe7464",
+          "#fdb6ac",
+          "#ffe9e5"
+        ]
+      },
+      "issue-bg": {
+        "role": "tertiary",
+        "displayName": "Red Wash",
+        "canonical": "#3a1a1e",
+        "tonalRamp": [
+          "#0f0a0a",
+          "#301f20",
+          "#56393c",
+          "#795558",
+          "#9f777a",
+          "#c1999c",
+          "#e3c1c3",
+          "#ffe8ea"
+        ]
+      },
+      "issue-bg-light": {
+        "role": "tertiary",
+        "displayName": "Red Wash (light theme)",
+        "canonical": "#fbe5e2",
+        "tonalRamp": [
+          "#0d0a0a",
+          "#2a2221",
+          "#4c3f3d",
+          "#6d5c59",
+          "#917e7b",
+          "#b39f9d",
+          "#d7c6c4",
+          "#f7ebea"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#f0b43c",
+        "tonalRamp": [
+          "#110a01",
+          "#312101",
+          "#583d00",
+          "#7d590a",
+          "#aa7901",
+          "#d19a25",
+          "#f1c371",
+          "#feeccd"
+        ]
+      },
+      "warning-light": {
+        "role": "tertiary",
+        "displayName": "Caution Amber (light theme)",
+        "canonical": "#8f5a00",
+        "tonalRamp": [
+          "#110a03",
+          "#341f02",
+          "#5d3902",
+          "#865400",
+          "#ad762d",
+          "#ce9957",
+          "#efc18d",
+          "#ffebd5"
+        ]
+      },
+      "warning-bg": {
+        "role": "tertiary",
+        "displayName": "Amber Wash",
+        "canonical": "#2f2714",
+        "tonalRamp": [
+          "#0c0b08",
+          "#28241a",
+          "#484232",
+          "#68604c",
+          "#8c826d",
+          "#ada48f",
+          "#d2cab8",
+          "#f3eee2"
+        ]
+      },
+      "warning-bg-light": {
+        "role": "tertiary",
+        "displayName": "Amber Wash (light theme)",
+        "canonical": "#fbefd2",
+        "tonalRamp": [
+          "#0c0b08",
+          "#282418",
+          "#49422e",
+          "#696048",
+          "#8d8268",
+          "#aea48a",
+          "#d3cab4",
+          "#f4eedf"
+        ]
+      },
+      "info": {
+        "role": "tertiary",
+        "displayName": "Notice Blue-Grey",
+        "canonical": "#9db9df",
+        "tonalRamp": [
+          "#080b10",
+          "#192534",
+          "#30435d",
+          "#4a6282",
+          "#6b85a9",
+          "#8da7ca",
+          "#b7ccea",
+          "#e5f0ff"
+        ]
+      },
+      "info-light": {
+        "role": "tertiary",
+        "displayName": "Notice Blue-Grey (light theme)",
+        "canonical": "#3d5a80",
+        "tonalRamp": [
+          "#080b11",
+          "#172536",
+          "#2d4361",
+          "#466287",
+          "#6685ae",
+          "#89a7cf",
+          "#b3cdef",
+          "#e5f0fe"
+        ]
+      },
+      "info-bg": {
+        "role": "tertiary",
+        "displayName": "Notice Wash",
+        "canonical": "#13264d",
+        "tonalRamp": [
+          "#080b11",
+          "#192438",
+          "#314263",
+          "#4a608a",
+          "#6b83b1",
+          "#8da5d2",
+          "#b7cbf2",
+          "#e6efff"
+        ]
+      },
+      "info-bg-light": {
+        "role": "tertiary",
+        "displayName": "Notice Wash (light theme)",
+        "canonical": "#e5edf7",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#212428",
+          "#3e4349",
+          "#5b6169",
+          "#7d848d",
+          "#9ea5ae",
+          "#c5cbd3",
+          "#ebeff4"
+        ]
+      },
+      "gain": {
+        "role": "tertiary",
+        "displayName": "Gain Green",
+        "canonical": "#45cf91",
+        "tonalRamp": [
+          "#020f07",
+          "#002c1a",
+          "#045032",
+          "#04734a",
+          "#119b66",
+          "#3fbf85",
+          "#83e2b1",
+          "#c3ffdd"
+        ]
+      },
+      "gain-light": {
+        "role": "tertiary",
+        "displayName": "Gain Green (light theme)",
+        "canonical": "#10804f",
+        "tonalRamp": [
+          "#040e07",
+          "#002d18",
+          "#04502f",
+          "#037345",
+          "#359866",
+          "#61ba88",
+          "#96ddb3",
+          "#cdfcde"
+        ]
+      },
+      "loss": {
+        "role": "tertiary",
+        "displayName": "Loss Coral",
+        "canonical": "#ff9a8f",
+        "tonalRamp": [
+          "#140706",
+          "#3e1512",
+          "#6e2924",
+          "#98423b",
+          "#c2635a",
+          "#e4877d",
+          "#feb6ad",
+          "#ffe9e6"
+        ]
+      },
+      "loss-light": {
+        "role": "tertiary",
+        "displayName": "Loss Coral (light theme)",
+        "canonical": "#b8271f",
+        "tonalRamp": [
+          "#170504",
+          "#490504",
+          "#7f0c09",
+          "#ad251d",
+          "#db4b3e",
+          "#fe7464",
+          "#fdb6ac",
+          "#ffe9e5"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#424242",
+          "#606060",
+          "#838383",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "focus-light": {
+        "role": "neutral",
+        "displayName": "Focus Ink (light theme)",
+        "canonical": "#15181c",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#222426",
+          "#404346",
+          "#5d6165",
+          "#808389",
+          "#a1a5aa",
+          "#c7cbcf",
+          "#eceff2"
+        ]
+      },
+      "mark": {
+        "role": "neutral",
+        "displayName": "Row Mark",
+        "canonical": "color-mix(in srgb, var(--ink) 14%, transparent)"
+      },
+      "mark-light": {
+        "role": "neutral",
+        "displayName": "Row Mark (light theme)",
+        "canonical": "color-mix(in srgb, var(--ink) 9%, transparent)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The usable-space number in the estimate column. One per screen."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "View titles, currently the Export view."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The Poolsmith name in the top bar; the unit beside the display number uses the same size at 600."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Group heads, enclosure names, form titles, export subheads."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text and input values (inputs at 600)."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Findings, tables, guide notes, button text at 600."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, meta lines, hints, drop-zone text."
+      },
+      "column-title": {
+        "displayName": "Column title",
+        "purpose": "Uppercase column headings HARDWARE and ESTIMATE only."
+      },
+      "bullet": {
+        "displayName": "Bullet",
+        "purpose": "Line bullet codes; 10 to 11px inside disk tiles and facts."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Bay numbers, disk type and station names, only inside bays and under station dots."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Inline code and the zpool create output."
+      }
+    },
+    "shadows": [
+      {
+        "name": "popover-lift",
+        "value": "0 8px 24px rgb(0 0 0 / 0.28)",
+        "purpose": "The term explanation popover, the only floating layer."
+      },
+      {
+        "name": "picked-ring",
+        "value": "0 0 0 1px var(--focus)",
+        "purpose": "Doubles the border of a picked disk tile."
+      },
+      {
+        "name": "tab-underline",
+        "value": "inset 0 -3px 0 var(--ink)",
+        "purpose": "The active pool or export tab."
+      },
+      {
+        "name": "hollow-bullet",
+        "value": "inset 0 0 0 2px var(--line)",
+        "purpose": "The bullet of an empty cache or spare row."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "150ms ease-out",
+        "purpose": "All hover, border, background, opacity and dimming transitions."
+      },
+      {
+        "name": "station-enter",
+        "value": "scale from 0.4, 180ms",
+        "purpose": "A station dot appearing on a line after a drop."
+      },
+      {
+        "name": "delta-flash",
+        "value": "2600ms ease-out",
+        "purpose": "The gain or loss delta next to usable space after an edit."
+      },
+      {
+        "name": "dim",
+        "value": "opacity 0.35",
+        "purpose": "Parts not involved while a line, station, disk or finding is hovered."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0ms",
+        "purpose": "prefers-reduced-motion sets every transition and animation to 0ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stacked",
+        "value": "900px",
+        "purpose": "At or below: one column, estimate first, editing hidden, fields read-only."
+      }
+    ],
+    "layout": {
+      "topBar": "56px",
+      "columns": "minmax(320px, 372px) minmax(0, 1fr) minmax(300px, 360px)",
+      "columnPadding": "20px 24px 32px",
+      "exportMaxWidth": "860px",
+      "bayHeights": {
+        "lff": "58px",
+        "sff": "76px",
+        "m2": "48px"
+      }
+    },
+    "focusRing": {
+      "value": "2px solid var(--focus)",
+      "offset": "2px"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Porcelain fill for the one primary action in view, such as Export.",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 2.5v8M4.8 7.5L8 10.7l3.2-3.2M3 13.5h10\"/></svg>Export</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 1px solid var(--rule-strong); border-radius: 6px; background: transparent; color: var(--ink); font: 600 13px/1 'Overpass Variable', system-ui, sans-serif; white-space: nowrap; cursor: pointer; transition: background-color 150ms ease-out, border-color 150ms ease-out; } .ds-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; } .ds-btn-primary { background: var(--ink); border-color: var(--ink); color: var(--ground); } .ds-btn-primary:hover { background: var(--ink-2); border-color: var(--ink-2); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined control for adding vdevs and other ordinary actions.",
+      "html": "<button class=\"ds-btn-secondary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M8 3v10M3 8h10\"/></svg>raidz2</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 1px solid var(--rule-strong); border-radius: 6px; background: transparent; color: var(--ink); font: 600 13px/1 'Overpass Variable', system-ui, sans-serif; cursor: pointer; transition: background-color 150ms ease-out, border-color 150ms ease-out; } .ds-btn-secondary:hover { background: var(--raise); border-color: var(--ink-3); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Borderless low-weight action, used in the top bar.",
+      "html": "<button class=\"ds-btn-quiet\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 2.5h8l2 2v9H3zM5.5 2.5v3h5v-3M5 13.5V9h6v4.5\"/></svg>Save</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--ink-2); font: 600 13px/1 'Overpass Variable', system-ui, sans-serif; cursor: pointer; transition: background-color 150ms ease-out; } .ds-btn-quiet:hover { background: var(--raise); color: var(--ink); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Labelled input or select on the raise ground.",
+      "html": "<label class=\"ds-field\">Pool name<input value=\"tank\" /></label>",
+      "css": ".ds-field { display: grid; gap: 4px; font: 400 12px/1.45 'Overpass Variable', system-ui, sans-serif; color: var(--ink-2); } .ds-field input { height: 32px; padding: 0 8px; border: 1px solid var(--rule-strong); border-radius: 6px; background: var(--raise); color: var(--ink); font: 600 14px/1 'Overpass Variable', system-ui, sans-serif; } .ds-field input:hover { border-color: var(--ink-3); } .ds-field input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "chip",
+      "refersTo": "segmented-option",
+      "description": "Two or three exclusive options in one frame, such as HBA or RAID controller mode.",
+      "html": "<div class=\"ds-segmented\"><button aria-pressed=\"true\">HBA</button><button aria-pressed=\"false\">RAID</button></div>",
+      "css": ".ds-segmented { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 6px; overflow: hidden; } .ds-segmented button { height: 30px; padding: 0 10px; border: 0; background: transparent; color: var(--ink-2); font: 600 13px/1 'Overpass Variable', system-ui, sans-serif; cursor: pointer; } .ds-segmented button + button { border-left: 1px solid var(--rule-strong); } .ds-segmented button:hover { color: var(--ink); } .ds-segmented button[aria-pressed='true'] { background: var(--ink); color: var(--ground); } .ds-segmented button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }"
+    },
+    {
+      "name": "Pool Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Tabs for pools and export formats, active tab underlined in ink.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">tank</button><button role=\"tab\" aria-selected=\"false\">backup</button><button role=\"tab\" class=\"ds-tab-new\">+ New pool</button></div>",
+      "css": ".ds-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--rule); } .ds-tabs button { height: 40px; padding: 0 14px; border: 0; background: none; color: var(--ink-2); font: 600 14px/1 'Overpass Variable', system-ui, sans-serif; cursor: pointer; } .ds-tabs button:hover { color: var(--ink); } .ds-tabs button[aria-selected='true'] { color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); } .ds-tabs .ds-tab-new { color: var(--ink-3); } .ds-tabs button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }"
+    },
+    {
+      "name": "Line Bullet",
+      "kind": "custom",
+      "refersTo": "line-bullet",
+      "description": "Coloured pill naming a vdev; the same code marks the disk in its bay and the line in the pool.",
+      "html": "<span class=\"ds-bullet\" style=\"--line: var(--line-data)\">D1</span> <span class=\"ds-bullet\" style=\"--line: var(--line-special)\">S1</span> <span class=\"ds-bullet\" style=\"--line: var(--line-log)\">L1</span> <span class=\"ds-bullet\" style=\"--line: var(--line-cache)\">C</span> <span class=\"ds-bullet\" style=\"--line: var(--line-spare)\">SP</span>",
+      "css": ".ds-bullet { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; background: var(--line); color: var(--on-line); font: 800 12px/1 'Overpass Variable', system-ui, sans-serif; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Vdev Line",
+      "kind": "custom",
+      "refersTo": "vdev-line",
+      "description": "A vdev drawn as a transit line: bullet, track with station dots, and layout, size and fault tolerance.",
+      "html": "<div class=\"ds-line\" style=\"--line: var(--line-data)\"><span class=\"ds-line-bullet\">D1</span><div class=\"ds-track\"><button class=\"ds-station\"><span class=\"ds-dot\"></span><span class=\"ds-name\">DS4246 0</span></button><button class=\"ds-station\"><span class=\"ds-dot\"></span><span class=\"ds-name\">DS4246 1</span></button><button class=\"ds-station\"><span class=\"ds-dot\"></span><span class=\"ds-name\">DS4246 2</span></button><button class=\"ds-station\"><span class=\"ds-dot\"></span><span class=\"ds-name\">DS4246 3</span></button></div><div class=\"ds-meta\"><strong>raidz2</strong><span>4 × 8 TB</span><span>any 2 may fail</span></div></div>",
+      "css": ".ds-line { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 10px 8px 10px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--raise); font-family: 'Overpass Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; transition: border-color 150ms ease-out, background-color 150ms ease-out; } .ds-line:hover { border-color: var(--line); background: color-mix(in srgb, var(--line) 12%, var(--raise)); } .ds-line-bullet { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; background: var(--line); color: var(--on-line); font-size: 12px; font-weight: 800; line-height: 1; } .ds-track { position: relative; display: flex; justify-content: space-between; gap: 4px; min-height: 36px; padding: 0 2px; } .ds-track::before { content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 5px; border-radius: 3px; background: var(--line); } .ds-station { position: relative; display: grid; justify-items: center; gap: 3px; padding: 0; border: 0; background: none; cursor: grab; flex: 1 1 0; max-width: 96px; } .ds-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--raise); border: 4px solid var(--line); box-sizing: border-box; transition: transform 150ms ease-out; } .ds-station:hover .ds-dot { transform: scale(1.15); } .ds-station:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; } .ds-name { font-size: 10px; color: var(--ink-3); white-space: nowrap; } .ds-meta { display: grid; justify-items: end; gap: 1px; font-size: 12px; color: var(--ink-2); } .ds-meta strong { font-size: 13px; color: var(--ink); }"
+    },
+    {
+      "name": "Disk Tile",
+      "kind": "card",
+      "refersTo": "disk-tile",
+      "description": "A disk in its bay, carrying the bullet of the line it belongs to, next to an empty bay.",
+      "html": "<div class=\"ds-bays\"><button class=\"ds-disk\" style=\"--line: var(--line-data)\"><span class=\"ds-disk-head\"><span class=\"ds-bay\">0</span><span class=\"ds-disk-bullet\">D1</span></span><span class=\"ds-size\">8 TB</span><span class=\"ds-type\">HDD</span></button><button class=\"ds-bay-empty\"><span class=\"ds-bay\">1</span></button></div>",
+      "css": ".ds-bays { display: grid; grid-template-columns: repeat(2, 64px); gap: 4px; font-family: 'Overpass Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; } .ds-disk { display: flex; flex-direction: column; align-items: flex-start; height: 58px; padding: 4px 5px; border: 1px solid color-mix(in srgb, var(--line) 55%, var(--rule-strong)); border-radius: 4px; background: var(--bay-full); color: var(--ink); text-align: left; cursor: grab; transition: border-color 150ms ease-out; } .ds-disk:hover { border-color: var(--ink-3); } .ds-disk:focus-visible, .ds-bay-empty:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; } .ds-disk-head { display: flex; justify-content: space-between; width: 100%; margin-bottom: auto; } .ds-bay { font-size: 10px; line-height: 16px; color: var(--ink-3); } .ds-disk-bullet { display: inline-grid; place-items: center; min-width: 20px; height: 18px; padding: 0 4px; border-radius: 12px; background: var(--line); color: var(--on-line); font-size: 10px; font-weight: 800; line-height: 1; } .ds-size { font-size: 12px; font-weight: 700; } .ds-type { font-size: 10px; color: var(--ink-2); } .ds-bay-empty { position: relative; height: 58px; padding: 3px 5px; border: 1px solid transparent; border-radius: 4px; background: var(--bay-empty); text-align: left; cursor: pointer; transition: border-color 150ms ease-out; } .ds-bay-empty .ds-bay { position: absolute; top: 3px; left: 5px; } .ds-bay-empty:hover { border-color: var(--ink-3); }"
+    },
+    {
+      "name": "Finding",
+      "kind": "custom",
+      "refersTo": "finding-warning",
+      "description": "Issue and warning rows on their wash; hovering one dims every part it does not point at.",
+      "html": "<ul class=\"ds-findings\"><li data-severity=\"issue\"><button><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5.5 2h5L14 5.5v5L10.5 14h-5L2 10.5v-5zM8 5v3.6M8 10.9v.1\"/></svg><span><strong>Issue.</strong> ashift 9 is below the 4K sector size of DS4246 0.</span></button></li><li data-severity=\"warning\"><button><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 2l6.5 11.5h-13zM8 6.5v3M8 11.6v.1\"/></svg><span><strong>Warning.</strong> Special vdev may lose 1 disk, the data vdevs 2.</span></button></li></ul>",
+      "css": ".ds-findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; } .ds-findings button { display: flex; gap: 8px; align-items: flex-start; width: 100%; padding: 10px 12px; border: 0; border-radius: 8px; color: var(--ink); text-align: left; font: 400 13px/1.45 'Overpass Variable', system-ui, sans-serif; cursor: pointer; } .ds-findings svg { flex: none; margin-top: 1px; } .ds-findings button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; } [data-severity='issue'] button { background: var(--issue-bg); } [data-severity='issue'] svg, [data-severity='issue'] strong { color: var(--issue); } [data-severity='warning'] button { background: var(--warning-bg); } [data-severity='warning'] svg, [data-severity='warning'] strong { color: var(--warning); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Transit Map",
+    "overview": "Poolsmith draws a storage pool as a transit network. Every vdev is a line with its own coloured bullet, every disk is a station on it, and the same bullet appears on the disk in its bay and on the line in the pool, so hardware and pool read as one map. The ground is midnight-blue enamel; type is porcelain-white signage set in Overpass with tabular figures. The light theme swaps to white enamel and keeps every line ink and its meaning.\n\nThe screen is dense and calm, built for a person trying many layouts in one sitting. Three fixed columns (hardware, pool, estimate) separate by ground tone and hairline rules. Colour is spent on meaning only: five line inks name vdev roles, red and amber name issues and warnings, and everything else stays in the ink and enamel neutrals. Selection and focus are white (dark) or near-black (light) so they never read as a line or a warning.\n\nThe system refuses the admin template: no sidebar navigation, no stat-card grids, no blue call-to-action buttons. The primary button is porcelain ink on enamel, and the most important interaction (dragging a disk onto a line) needs no button at all.",
+    "keyCharacteristics": [
+      "Line bullets shared by bay and vdev are the signature; they carry the network metaphor.",
+      "Fixed line inks with fixed meaning in both themes.",
+      "Flat, tonal depth: ground, panel and raise steps plus 1px rules, almost no shadow.",
+      "Tabular figures everywhere, so numbers hold their position while values change.",
+      "Hovering a line, station, disk or finding dims everything not involved."
+    ],
+    "rules": [
+      {
+        "name": "The Fixed Ink Rule",
+        "body": "A line ink means one vdev role, in both themes, on every surface. Never use a line ink for decoration, emphasis or a button.",
+        "section": "colors"
+      },
+      {
+        "name": "The Signal Reserve Rule",
+        "body": "Red and amber belong to issues and warnings only. Gain green and loss coral appear only in the usable-space delta.",
+        "section": "colors"
+      },
+      {
+        "name": "The Neutral Focus Rule",
+        "body": "Selection and focus use the focus token (white in dark, near-black in light), never a hue, so they cannot be mistaken for a line or a finding.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "All figures are tabular (`tnum`). Never switch to proportional figures for a number that can change.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Big Number Rule",
+        "body": "Display size is for usable space alone. Fault tolerance and other facts sit at body size, bold, in the facts list below it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Ground Rule",
+        "body": "Surfaces rest flat. A part lifts by moving one ground step (ground to raise), never by gaining a drop shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set a part's colour through `--line: var(--line-<role>)` so bullet, track, dot and drop tint all follow the role.",
+      "Do show the same bullet code on a disk's bay and on its line.",
+      "Do separate regions with ground steps (ground, panel, raise) and 1px rules.",
+      "Do keep all transitions at 150ms ease-out, and honour reduced motion (all durations to 0ms).",
+      "Do put the plain-word explanation next to every ZFS term, as a dotted-underline term with a popover.",
+      "Do mark a flagged part with the issue or warning border on the part itself, not only in the findings list."
+    ],
+    "donts": [
+      "Don't use a line ink, red or amber for decoration, buttons or emphasis.",
+      "Don't wrap columns or sections in boxed cards; filled, rounded containers belong to single parts (line rows, findings, notices, popovers, code blocks), never to regions.",
+      "Don't add stat-card grids, a navigation sidebar or blue call-to-action buttons.",
+      "Don't use a hue for selection or focus; use the focus token.",
+      "Don't add drop shadows to resting surfaces; the popover is the only lifted layer.",
+      "Don't use the uppercase column title as a kicker above other headings; it names a column and nothing else."
+    ]
+  }
+}
