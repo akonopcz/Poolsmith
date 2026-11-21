@@ -245,8 +245,9 @@
     height: 58px;
   }
 
+  /* Tall enough for a code that wraps under the bay number and a size on two lines. */
   .sff .slot {
-    height: 76px;
+    height: 84px;
   }
 
   .m2 .slot {

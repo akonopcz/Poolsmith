@@ -54,6 +54,7 @@
         aria-selected={pool.id === store.pool.id}
         onclick={() => (store.poolId = pool.id)}
       >
+        <span class="letter">{store.letters.get(pool.id)}</span>
         {pool.name || 'unnamed'}
       </button>
     {/each}
@@ -200,6 +201,30 @@
 
   .tabs button:hover {
     color: var(--ink);
+  }
+
+  /* The pool letter that also prefixes the codes on the bays. */
+  .letter {
+    position: relative;
+    /* Undo the tab's cap nudge (0.15 × 14px), so the badge sits on the tab's centre. */
+    top: -2.1px;
+    display: inline-grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: var(--cap-nudge) 3px 0;
+    border: 1.5px solid var(--ink-3);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ink-2);
+  }
+
+  .tabs button[aria-selected='true'] .letter {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--ground);
   }
 
   .tabs .new {
