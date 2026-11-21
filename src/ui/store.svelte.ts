@@ -7,7 +7,7 @@ import { computeEfficiencyTable } from '../core/zfs/efficiency'
 import { estimatePerformance } from '../core/zfs/performance'
 import { computeReportedCapacity } from '../core/zfs/reported'
 import { zfsDiskIds } from '../core/zfs/validate'
-import { emptyPlan, vdevsOf } from './edits'
+import { emptyPlan, vdevsOf } from '../core/edit'
 import { findingsFor, flaggedIds } from './findings'
 
 export type { Finding } from './findings'

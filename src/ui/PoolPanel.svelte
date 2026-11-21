@@ -1,7 +1,7 @@
 <script lang="ts">
   import { formatBlockSize } from '../core/format'
   import DiskListGroup from './DiskListGroup.svelte'
-  import { addPool, removePool } from './edits'
+  import { addPool, removePool } from '../core/edit'
   import Findings from './Findings.svelte'
   import Icon from './Icon.svelte'
   import { store } from './store.svelte'

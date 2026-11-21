@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Disk } from '../core/model'
-  import { addDisksToBays, addLooseDisk, removeDisk, updateDisk, type DiskSpec } from './edits'
+  import { addDisksToBays, addLooseDisk, removeDisk, updateDisk, type DiskSpec } from '../core/edit'
   import { store, type Editor } from './store.svelte'
   import Term from './Term.svelte'
 

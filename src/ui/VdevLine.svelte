@@ -3,7 +3,7 @@
   import type { Vdev, VdevType } from '../core/zfs/model'
   import { faultTolerance, hasValidDiskCount, minDisks } from '../core/zfs/topology'
   import { canPlace, dropTarget, placePicked } from './dnd'
-  import { removeVdev, type VdevGroup } from './edits'
+  import { removeVdev, type VdevGroup } from '../core/edit'
   import Findings from './Findings.svelte'
   import Icon from './Icon.svelte'
   import { bayLabel, enclosureName, TYPE_LABEL } from './labels'

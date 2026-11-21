@@ -1,10 +1,10 @@
-import type { Bay, Controller, Disk, Enclosure, Plan } from '../core/model'
-import { SCHEMA_VERSION } from '../core/model'
-import type { Vdev, VdevType, ZfsPool } from '../core/zfs/model'
+import type { Bay, Controller, Disk, Enclosure, Plan } from './model'
+import { SCHEMA_VERSION } from './model'
+import type { Vdev, VdevType, ZfsPool } from './zfs/model'
 
-// Edits change the plan in place, so they work on Svelte's reactive proxy as well as on plain
-// objects in tests. They only move parts around; whether the result makes sense is a question
-// for validatePlan and findWarnings.
+// Edits change the plan in place, so they work on a UI framework's reactive state as well as
+// on plain objects in tests. They only move parts around; whether the result makes sense is a
+// question for validatePlan and findWarnings.
 
 export type VdevGroup = 'data' | 'special' | 'log'
 
