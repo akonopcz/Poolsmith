@@ -3,7 +3,7 @@
   import DiskInspector from './DiskInspector.svelte'
   import DiskTile from './DiskTile.svelte'
   import { enclosureWidths } from './bays'
-  import { dropTarget } from './dnd'
+  import { bayTarget, dropTarget } from './dnd'
   import EnclosureBlock from './EnclosureBlock.svelte'
   import EnclosureForm from './EnclosureForm.svelte'
   import Icon from './Icon.svelte'
@@ -59,14 +59,19 @@
       {/each}
     </div>
 
-    {#if loose.length > 0}
-      <section class="loose">
+    <!-- Also shown while a disk is dragged from a bay, as the place to take it out of its bay. -->
+    {#if loose.length > 0 || store.dragging?.from === 'hardware'}
+      <section class="loose" use:bayTarget={null}>
         <h3>Disks without a bay</h3>
-        <div class="loose-grid">
-          {#each loose as disk (disk.id)}
-            <div class="slot"><DiskTile diskId={disk.id} /></div>
-          {/each}
-        </div>
+        {#if loose.length > 0}
+          <div class="loose-grid">
+            {#each loose as disk (disk.id)}
+              <div class="slot"><DiskTile diskId={disk.id} /></div>
+            {/each}
+          </div>
+        {:else}
+          <p class="loose-drop">Drop a disk here to take it out of its bay</p>
+        {/if}
       </section>
     {/if}
 
@@ -181,7 +186,29 @@
   }
 
   .loose {
+    position: relative;
+    isolation: isolate;
     margin-bottom: 20px;
+  }
+
+  /* Same frame as an enclosure that takes a dragged one: behind the content, with room. */
+  .loose:global([data-over])::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    z-index: -1;
+    border: 1.5px dashed var(--focus);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--focus) 6%, transparent);
+    pointer-events: none;
+  }
+
+  .loose-drop {
+    padding: 14px;
+    border: 1.5px dashed var(--rule-strong);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--ink-3);
   }
 
   .loose h3 {

@@ -33,12 +33,12 @@
   class:taken
   class:dim
   class:picked
-  class:dragging={store.dragging === diskId}
+  class:dragging={store.dragging?.diskId === diskId}
   data-flag={flag}
   data-part={diskId}
   style:--line={place ? `var(--line-${place.role})` : undefined}
-  draggable={!taken}
-  ondragstart={(e) => startDrag(e, diskId)}
+  draggable="true"
+  ondragstart={(e) => startDrag(e, diskId, 'hardware')}
   ondragend={endDrag}
   onclick={click}
   onmouseenter={() => store.focusOn([diskId])}
