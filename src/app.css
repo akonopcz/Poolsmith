@@ -1,8 +1,350 @@
+@import '@fontsource-variable/overpass/wght.css';
+
+/* Midnight enamel by default, white enamel as the light option. Line inks keep their meaning
+   in both themes; red and amber belong to issues and warnings only. */
 :root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
+  color-scheme: dark;
+  --ground: #0a1632;
+  --panel: #0e1d3f;
+  --raise: #142853;
+  --ink: #eef1ea;
+  --ink-2: #b3bdca;
+  --ink-3: #97a3b6;
+  --rule: #20345f;
+  --rule-strong: #34497a;
+  --bay-empty: #12234a;
+  --bay-full: #1a3062;
+  --on-line: #0a1632;
+  --line-data: #5b93ff;
+  --line-special: #b585ff;
+  --line-log: #45cf91;
+  --line-cache: #3cc6d8;
+  --line-spare: #929cab;
+  --issue: #ff7b6e;
+  --issue-bg: #3a1a1e;
+  --warning: #f0b43c;
+  --warning-bg: #2f2714;
+  --info: #9db9df;
+  --info-bg: #13264d;
+  --gain: #45cf91;
+  --loss: #ff9a8f;
+  /* Selection and focus stay neutral, so they never read as a line or a warning. */
+  --focus: #ffffff;
+  --mark: color-mix(in srgb, var(--ink) 14%, transparent);
+  --font: 'Overpass Variable', system-ui, sans-serif;
+  /* Overpass (ascent 1766, descent 766 per 2000) sets capitals and digits above the middle of
+     their box: 0.1em by its metrics, about 0.15em as rendered at UI sizes. Text centred in a
+     shape adds twice that as top padding to sit in the middle. */
+  --cap-nudge: 0.3em;
+  --mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, monospace;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --ground: #fbfbfa;
+  --panel: #f1f2f0;
+  --raise: #ffffff;
+  --ink: #15181c;
+  --ink-2: #474d56;
+  --ink-3: #5f656e;
+  --rule: #dcdfdc;
+  --rule-strong: #b9bdba;
+  --bay-empty: #e8eae8;
+  --bay-full: #ffffff;
+  --on-line: #ffffff;
+  --line-data: #1d4fd8;
+  --line-special: #7b3fc0;
+  --line-log: #10804f;
+  --line-cache: #0a7486;
+  --line-spare: #646b75;
+  --issue: #b8271f;
+  --issue-bg: #fbe5e2;
+  --warning: #8f5a00;
+  --warning-bg: #fbefd2;
+  --info: #3d5a80;
+  --info-bg: #e5edf7;
+  --gain: #10804f;
+  --loss: #b8271f;
+  --focus: #15181c;
+  --mark: color-mix(in srgb, var(--ink) 9%, transparent);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
 }
 
 body {
+  background: var(--ground);
+  color: var(--ink);
+  font: 14px/1.45 var(--font);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ink) 25%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
   margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+code,
+pre {
+  font-family: var(--mono);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+}
+
+/* Shared controls. Components use these instead of their own button and field styles. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: var(--cap-nudge) 12px 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease-out,
+    border-color 150ms ease-out;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--raise);
+  border-color: var(--ink-3);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--ground);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--ink-2);
+  border-color: var(--ink-2);
+}
+
+.btn.quiet {
+  border-color: transparent;
+  color: var(--ink-2);
+}
+
+.btn.quiet:hover:not(:disabled) {
+  color: var(--ink);
+}
+
+.btn.small {
+  height: 28px;
+  padding: var(--cap-nudge) 10px 0;
+  font-size: 12px;
+}
+
+/* The top padding centres the label on its capitals; icons move back to the true centre. */
+.btn svg {
+  position: relative;
+  top: calc(var(--cap-nudge) * -0.5);
+}
+
+.btn.icon svg {
+  top: 0;
+}
+
+.btn.icon {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+}
+
+.btn.icon.small {
+  width: 28px;
+}
+
+.btn.danger:hover:not(:disabled) {
+  color: var(--issue);
+  border-color: var(--issue);
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.field input,
+.field select {
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  background: var(--raise);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input:hover,
+.field select:hover {
+  border-color: var(--ink-3);
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.segmented button {
+  height: 30px;
+  padding: var(--cap-nudge) 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.segmented button + button {
+  border-left: 1px solid var(--rule-strong);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* Line bullet: the coloured roundel that names a vdev on the bay and on its line. */
+.bullet {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: var(--cap-nudge) 6px 0;
+  border-radius: 12px;
+  background: var(--line);
+  color: var(--on-line);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+/* Set for a moment on a part a finding points at, after scrolling it into view. */
+[data-ping] {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Covers a drop zone while a disk is picked, so a click anywhere on it places the disk. The
+   zone shows the offer through its border colour; the button itself stays invisible. */
+.hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hit:hover {
+  background: color-mix(in srgb, var(--line, var(--ink)) 10%, transparent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Small screens show the plan for reading; editing controls need a desktop. */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .edit-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: revert;
+  }
+
+  /* Fields stay readable as text but do not take input. */
+  main input,
+  main select {
+    pointer-events: none;
+    appearance: none;
+    border-color: transparent !important;
+    background: transparent !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
 }
