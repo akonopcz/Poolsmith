@@ -6,6 +6,7 @@ import { computeNaiveCapacity } from '../core/zfs/capacity'
 import { computeEfficiencyTable } from '../core/zfs/efficiency'
 import { estimatePerformance } from '../core/zfs/performance'
 import { computeReportedCapacity } from '../core/zfs/reported'
+import { poolLetters } from '../core/zfs/codes'
 import { zfsDiskIds } from '../core/zfs/validate'
 import { emptyPlan, vdevsOf } from '../core/edit'
 import { findingsFor, flaggedIds } from './findings'
@@ -49,6 +50,7 @@ class Store {
 
   pool = $derived(this.plan.layouts.find((p) => p.id === this.poolId) ?? this.plan.layouts[0])
   disks = $derived(this.plan.host.disks)
+  letters = $derived(poolLetters(this.plan.layouts))
 
   issues = $derived(validatePlan(this.plan))
   warnings = $derived(findWarnings(this.plan))

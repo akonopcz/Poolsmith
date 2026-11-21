@@ -9,8 +9,11 @@
 
   const disk = $derived(store.disks.find((d) => d.id === diskId)!)
   const size = $derived(formatDecimal(disk.sizeBytes).split(' '))
-  const place = $derived(diskPlace(store.pool, diskId))
   const owner = $derived(poolOfDisk(store.plan, diskId))
+  const place = $derived(owner ? diskPlace(owner, diskId) : undefined)
+  // Disks of every pool keep their code; those of the other pools show it as an outline.
+  const active = $derived(owner !== undefined && owner === store.pool)
+  const letter = $derived(owner ? store.letters.get(owner.id) : '')
   const taken = $derived(!canPlace(diskId))
   const flag = $derived(store.flagged.get(diskId))
   const dim = $derived(store.isDim([diskId]))
@@ -26,7 +29,7 @@
 <button
   type="button"
   class="disk"
-  class:placed={place !== undefined}
+  class:placed={active}
   class:taken
   class:dim
   class:picked
@@ -42,18 +45,22 @@
   onmouseleave={() => store.focusOn(null)}
   onfocus={() => store.focusOn([diskId])}
   onblur={() => store.focusOn(null)}
-  title={describeDisk(store.plan.host, diskId) + (taken ? ` · in pool ${owner?.name}` : '')}
+  title={describeDisk(store.plan.host, diskId) + (owner ? ` · pool ${owner.name}` : '')}
   aria-pressed={picked}
 >
   <span class="head">
     <span class="bay">{bayLabel ?? ''}</span>
-    {#if place}<span class="bullet">{place.code}</span>{/if}
+    {#if place}
+      <span class="bullet" class:other={!active} aria-label="Pool {letter}, {place.code}">
+        <span class="pool-letter">{letter}</span>{place.code}
+      </span>
+    {/if}
   </span>
   <span class="size">
     <span>{size[0]}</span>
     <span class="unit">{size[1]}</span>
   </span>
-  <span class="type">{taken ? owner?.name : disk.type.toUpperCase()}</span>
+  <span class="type">{disk.type.toUpperCase()}</span>
   {#if flag}<span class="flag" aria-label={flag}></span>{/if}
 </button>
 
@@ -124,14 +131,30 @@
 
   /* Compact enough that bay number and a two-character code share one row in an SFF bay. */
   .bullet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-width: 0;
     height: 16px;
-    padding: var(--cap-nudge) 3px 0;
+    padding: var(--cap-nudge) 2px 0;
     font-size: 9px;
     letter-spacing: 0;
   }
 
   /* Narrow SFF bays put the unit under the number instead of clipping "300 GB". */
+  /* Lighter than the code, so "A" and "D1" read apart without a separator taking width. */
+  .pool-letter {
+    margin-right: 0.5px;
+    font-weight: 500;
+    opacity: 0.75;
+  }
+
+  .bullet.other {
+    background: transparent;
+    color: var(--ink-2);
+    box-shadow: inset 0 0 0 1.5px var(--line);
+  }
+
   .size {
     display: flex;
     flex-wrap: wrap;
