@@ -14,3 +14,16 @@ updates:
     commit-message:
       prefix: ci
       include: scope
+
+  - package-ecosystem: pre-commit
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 3
+    groups:
+      hooks:
+        patterns: ['*']
+    commit-message:
+      prefix: ci
+      include: scope
