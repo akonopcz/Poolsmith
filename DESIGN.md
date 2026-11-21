@@ -57,7 +57,7 @@ colors:
 typography:
   display:
     fontFamily: 'Overpass Variable, system-ui, sans-serif'
-    fontSize: '44px'
+    fontSize: '32px'
     fontWeight: 800
     lineHeight: 1
     letterSpacing: '-0.03em'
@@ -290,7 +290,7 @@ Signals, reserved for findings and deltas.
 
 ### Neutral
 
-- **Night Platform** (panel): the top bar and the estimate column, one step lighter than ground.
+- **Night Platform** (panel): the top bar, the estimate bar and the footer, one step lighter than ground.
 - **Lit Panel** (raise): vdev lines, filled support rows, inputs, popovers, inline code.
 - **Faded Porcelain** (ink-2): secondary text, field labels, quiet buttons, inactive tabs.
 - **Platform Grey** (ink-3): hints, placeholders, station names, bay numbers, footnotes.
@@ -319,7 +319,7 @@ Signals, reserved for findings and deltas.
 
 ### Hierarchy
 
-- **Display** (800, 44px, line-height 1, -0.03em): the usable-space number in the estimate column. One per screen.
+- **Display** (800, 32px, line-height 1, -0.03em): the usable-space number in the estimate bar. One per screen.
 - **Headline** (800, 28px, -0.02em): view titles, currently the Export view.
 - **Wordmark** (800, 18px, -0.01em): the Poolsmith name in the top bar, next to a ring icon. The unit beside the display number also uses 18px, at 600.
 - **Title** (700, 15px): group heads (Data, Special, Log, Cache, Spare), enclosure names, form titles, export subheads.
@@ -338,7 +338,7 @@ Signals, reserved for findings and deltas.
 
 ## Layout
 
-A fixed three-column working screen between a 56px top bar and a 32px footer. Hardware on the left and the pool in the centre share the width 2 to 3 (at least 320px and 480px), so hardware grows on wide screens; the estimate on the right stays at minmax(300px, 360px). Enclosures flow side by side once the hardware column fits them at their smallest bay width (SFF 36px, LFF and M.2 56px) and stop growing at 64px and 96px per bay. Each column scrolls on its own and the screen height is 100vh minus bar and footer. The side columns separate from the centre by ground tone (the estimate column on panel, hardware and pool on ground) and 1px rules; there are no boxed regions.
+A working screen between a 56px top bar and a 32px footer: an estimate bar across the full width, below it two columns. Hardware on the left and the pool on the right share the width 2 to 3 (at least 320px and 480px), so both grow on wide screens. Enclosures flow side by side once the hardware column fits them at their smallest bay width (SFF 36px, LFF and M.2 56px) and stop growing at 64px and 96px per bay. Each column scrolls on its own and the screen height is 100vh minus top bar and footer. The estimate bar sits on panel ground, hardware and pool on ground, separated by 1px rules; there are no boxed regions.
 
 Column padding is 20px top and 24px sides, with 32px at the bottom of scroll areas. Rhythm runs on 4px steps: 4px between bays, 6px between line rows and add buttons, 8px under heads, 20 to 24px between groups and enclosures. Bay grids follow each enclosure's real column count; LFF bays are 58px tall, SFF 76px, M.2 48px.
 
@@ -421,9 +421,9 @@ A raised row (raise fill, 1px rule border, 8px radius) in one line: the bullet w
 
 Dashed 1.5px strong-rule boxes with ink-3 text that say what to drop ("Drop an SSD here..."). When a disk is picked or dragged they take the line ink border; under the pointer they add a 12% ink tint. Support rows (cache, spare) become filled raise rows with a solid rule once they hold a disk.
 
-### Estimate column
+### Estimate bar
 
-Usable space at display size with the unit beside it, TiB and a term link below, then a facts list (dt in ink-2, dd bold) between two rules, findings, and collapsible Capacity, Space efficiency and Performance sections with a rotated-chevron summary. After an edit the delta flashes beside the unit in gain or loss for 2.6s.
+Always in view above hardware and pool, so the numbers stay visible while dragging. Left to right: usable space at display size with the unit beside it and TiB plus a term link below; "Pool may lose" with the per-line bullets; "Not in any pool"; then, pushed right, the finding counts in their signal colours and a "Details" button. Facts are separated by 1px rules, labels 12px ink-3 above 18px bold values. "Details" opens a panel under the bar (max 45vh, own scroll) with findings, Capacity, Space efficiency and Performance in auto-fit columns of at least 280px; clicking the finding counts opens it too. After an edit the delta flashes beside the TiB line in gain or loss for 2.6s.
 
 ## Do's and Don'ts
 

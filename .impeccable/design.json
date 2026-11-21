@@ -768,7 +768,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The usable-space number in the estimate column. One per screen."
+        "purpose": "The usable-space number in the estimate bar. One per screen."
       },
       "headline": {
         "displayName": "Headline",
@@ -869,12 +869,14 @@
     ],
     "layout": {
       "topBar": "56px",
-      "columns": "minmax(320px, 372px) minmax(0, 1fr) minmax(300px, 360px)",
+      "footer": "32px",
+      "estimateBar": "full width above the columns, 72px tall when closed",
+      "columns": "minmax(320px, 2fr) minmax(480px, 3fr)",
       "columnPadding": "20px 24px 32px",
       "exportMaxWidth": "860px",
       "bayHeights": {
         "lff": "58px",
-        "sff": "76px",
+        "sff": "84px",
         "m2": "48px"
       }
     },

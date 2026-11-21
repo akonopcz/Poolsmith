@@ -1,9 +1,9 @@
 <script lang="ts">
+  import EstimateBar from './ui/EstimateBar.svelte'
   import ExportView from './ui/ExportView.svelte'
   import Footer from './ui/Footer.svelte'
   import HardwarePanel from './ui/HardwarePanel.svelte'
   import PoolPanel from './ui/PoolPanel.svelte'
-  import ResultsPanel from './ui/ResultsPanel.svelte'
   import { store } from './ui/store.svelte'
   import TopBar from './ui/TopBar.svelte'
 
@@ -23,9 +23,9 @@
 <TopBar />
 {#if store.view === 'plan'}
   <main class="planner" class:picking={store.picked !== null}>
+    <EstimateBar />
     <HardwarePanel />
     <PoolPanel />
-    <ResultsPanel />
   </main>
 {:else}
   <ExportView />
@@ -35,8 +35,9 @@
 <style>
   .planner {
     display: grid;
-    /* Hardware grows with wide screens so bays get room; the estimate needs no more than this. */
-    grid-template-columns: minmax(320px, 2fr) minmax(480px, 3fr) minmax(300px, 360px);
+    /* Hardware and pool share the width; the estimate bar spans both above them. */
+    grid-template-columns: minmax(320px, 2fr) minmax(480px, 3fr);
+    grid-template-rows: auto minmax(0, 1fr);
     height: calc(100vh - var(--header-height) - var(--footer-height));
   }
 
@@ -51,10 +52,6 @@
       overflow: visible;
       border: 0;
       border-bottom: 1px solid var(--rule);
-    }
-
-    .planner > :global(.results) {
-      order: -1;
     }
   }
 </style>
