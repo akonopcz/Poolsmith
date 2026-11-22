@@ -71,6 +71,8 @@ Hints mark a trade-off rather than a risk:
 
 - Save and load a plan as a JSON file, so plans can live in git.
 - The plan file carries a schema version.
+- The browser keeps the current plan across reloads. It works without browser storage, and only
+  a plan file keeps a plan for good.
 
 ### Export
 

@@ -10,6 +10,7 @@ import { poolLetters } from '../core/zfs/codes'
 import { zfsDiskIds } from '../core/zfs/validate'
 import { emptyPlan, vdevsOf } from '../core/edit'
 import { findingsFor, flaggedIds } from './findings'
+import { browserStorage, readStoredPlan } from './autosave'
 
 export type { Finding } from './findings'
 import { widenIds } from './labels'
@@ -33,8 +34,10 @@ function loadTheme(): Theme {
   }
 }
 
+const storedPlan = readStoredPlan(browserStorage())
+
 class Store {
-  plan = $state<Plan>(emptyPlan())
+  plan = $state<Plan>(storedPlan ?? emptyPlan())
   poolId = $state(this.plan.layouts[0].id)
   view = $state<'plan' | 'export'>('plan')
   theme = $state<Theme>(loadTheme())
@@ -48,6 +51,8 @@ class Store {
   editor = $state<Editor | null>(null)
   /** Problems from the last file that failed to load. */
   loadErrors = $state<string[] | null>(null)
+  /** The plan came back from this browser's storage, not from a file. */
+  restored = $state(false)
 
   pool = $derived(this.plan.layouts.find((p) => p.id === this.poolId) ?? this.plan.layouts[0])
   disks = $derived(this.plan.host.disks)
@@ -75,6 +80,10 @@ class Store {
 
   isEmpty = $derived(this.plan.host.enclosures.length === 0 && this.plan.host.disks.length === 0)
 
+  constructor() {
+    this.restored = storedPlan !== null && !this.isEmpty
+  }
+
   setTheme(theme: Theme) {
     this.theme = theme
     try {
@@ -91,6 +100,7 @@ class Store {
     this.focus = null
     this.editor = null
     this.loadErrors = null
+    this.restored = false
     this.view = 'plan'
   }
 

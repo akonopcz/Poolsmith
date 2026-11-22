@@ -28,6 +28,7 @@
       serializePlan(store.plan),
       'application/json',
     )
+    store.restored = false
   }
 </script>
 
@@ -82,6 +83,13 @@
     {/if}
   </div>
 </header>
+
+{#if store.restored}
+  <div class="restored" role="status">
+    <span>Restored from this browser. Save a plan file to keep it for good.</span>
+    <button class="btn small" onclick={() => (store.restored = false)}>Dismiss</button>
+  </div>
+{/if}
 
 {#if store.loadErrors}
   <div class="load-errors" role="alert">
@@ -172,6 +180,18 @@
     background: var(--issue-bg);
     color: var(--ink);
     border-bottom: 1px solid var(--issue);
+  }
+
+  .restored {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 24px;
+    background: var(--info-bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--info);
+    font-size: 13px;
   }
 
   .load-errors strong {
