@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { serializePlan } from './core/file'
+  import { Autosave, browserStorage } from './ui/autosave'
   import { hardwareColumnWidth } from './ui/bays'
   import EstimateBar from './ui/EstimateBar.svelte'
   import ExportView from './ui/ExportView.svelte'
@@ -11,6 +13,12 @@
   $effect(() => {
     document.documentElement.dataset.theme = store.theme
   })
+
+  const AUTOSAVE_DELAY_MS = 500
+  const autosave = new Autosave(browserStorage(), serializePlan(store.plan), AUTOSAVE_DELAY_MS)
+
+  // Serializing reads every field, so any edit to the plan runs this again.
+  $effect(() => autosave.change(serializePlan(store.plan)))
 
   const WIDTH_KEY = 'poolsmith-hardware-width'
   const MIN_HARDWARE = 340
@@ -75,7 +83,11 @@
   }
 </script>
 
-<svelte:window onkeydown={keydown} bind:innerWidth={windowWidth} />
+<svelte:window
+  onkeydown={keydown}
+  onpagehide={() => autosave.flush()}
+  bind:innerWidth={windowWidth}
+/>
 
 <TopBar />
 {#if store.view === 'plan'}
