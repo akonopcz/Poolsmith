@@ -35,6 +35,7 @@ describe('guessBayColumns', () => {
     ['lff', 24, 6],
     ['sff', 24, 8],
     ['m2', 2, 4],
+    ['aic', 3, 2],
   ] as const)('%s with %i bays: %i per row', (formFactor, count, columns) => {
     expect(guessBayColumns(formFactor, count)).toBe(columns)
   })

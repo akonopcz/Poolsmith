@@ -20,6 +20,9 @@ servers, tower servers and homelab thin clients.
 ### Server model
 
 - Chassis with bays, for example 8x LFF, 2x M.2 NVMe.
+- PCIe drives: an add-in card SSD (such as an Intel P3500) as a bay of its own size, and an
+  adapter card with M.2 slots as an enclosure of kind PCIe card. Lanes and bifurcation are not
+  modeled.
 - Disk per bay: size, type (HDD, SSD, NVMe), logical and physical sector size, optional label.
 - Controller per bay group with its mode (HBA or RAID).
 

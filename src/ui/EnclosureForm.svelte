@@ -21,10 +21,22 @@
     Number.isInteger(bayCount) && bayCount >= 1 && bayCount <= 108 && columnsValid,
   )
 
+  // NVMe cards sit on the PCIe bus without a disk controller in between.
+  function kindChanged() {
+    if (kind !== 'card') return
+    formFactor = 'm2'
+    controllerChoice = 'none'
+  }
+
   function submit(event: SubmitEvent) {
     event.preventDefault()
     if (!valid) return
-    const fallback = { chassis: 'Server', shelf: 'Disk shelf', usb: 'USB enclosure' }[kind]
+    const fallback = {
+      chassis: 'Server',
+      shelf: 'Disk shelf',
+      usb: 'USB enclosure',
+      card: 'PCIe card',
+    }[kind]
     addEnclosure(store.plan, {
       name: name.trim() || fallback,
       kind,
@@ -45,7 +57,10 @@
 
 <form onsubmit={submit} class="enclosure-form">
   <h3>Add an enclosure</h3>
-  <p class="hint">A server chassis, a disk shelf or a USB case. Templates come later.</p>
+  <p class="hint">
+    A server chassis, a disk shelf, a USB case or a PCIe card with drive slots. Templates come
+    later.
+  </p>
 
   <label class="field">
     Name
@@ -55,10 +70,11 @@
   <div class="row">
     <label class="field">
       Kind
-      <select bind:value={kind}>
+      <select bind:value={kind} onchange={kindChanged}>
         <option value="chassis">Chassis</option>
         <option value="shelf">Disk shelf</option>
         <option value="usb">USB enclosure</option>
+        <option value="card">PCIe card</option>
       </select>
     </label>
     <label class="field">
@@ -67,6 +83,7 @@
         <option value="lff">3.5" LFF</option>
         <option value="sff">2.5" SFF</option>
         <option value="m2">M.2</option>
+        <option value="aic">Add-in card (PCIe)</option>
       </select>
     </label>
   </div>

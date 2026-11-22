@@ -30,7 +30,8 @@ export interface Controller {
 export interface Enclosure {
   id: string
   name: string
-  kind: 'chassis' | 'shelf' | 'usb'
+  /** `card` is a PCIe adapter that carries drives, such as a card with four M.2 slots. */
+  kind: 'chassis' | 'shelf' | 'usb' | 'card'
   bays: Bay[]
   /** Bays per row on the front, filled left to right and top to bottom. Missing means a guess. */
   columns?: number
@@ -39,7 +40,8 @@ export interface Enclosure {
 export interface Bay {
   id: string
   label: string
-  formFactor: 'lff' | 'sff' | 'm2'
+  /** `aic` is a PCIe add-in card that is itself the drive, such as an Intel P3500. */
+  formFactor: 'lff' | 'sff' | 'm2' | 'aic'
   /** Missing means attached directly, for example onboard SATA or an M.2 slot on the board. */
   controllerId?: string
   diskId?: string

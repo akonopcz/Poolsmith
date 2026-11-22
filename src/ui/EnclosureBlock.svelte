@@ -17,8 +17,8 @@
     store.plan.host.enclosures.find((e) => e.id === enclosureId)!,
   )
 
-  const KIND = { chassis: 'Chassis', shelf: 'Disk shelf', usb: 'USB enclosure' }
-  const FORM = { lff: '3.5" LFF', sff: '2.5" SFF', m2: 'M.2' }
+  const KIND = { chassis: 'Chassis', shelf: 'Disk shelf', usb: 'USB enclosure', card: 'PCIe card' }
+  const FORM = { lff: '3.5" LFF', sff: '2.5" SFF', m2: 'M.2', aic: 'add-in card' }
 
   const controllers = $derived(
     store.plan.host.controllers.filter((c) =>
