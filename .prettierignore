@@ -1,1 +1,7 @@
 pnpm-lock.yaml
+
+# Impeccable runtime state, never committed
+.impeccable/hook.cache.json
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/review/
