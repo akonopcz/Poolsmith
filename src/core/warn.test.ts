@@ -212,6 +212,12 @@ describe('findWarnings', () => {
       expect(codes(plan)).toEqual(['mixed-data-vdevs'])
     })
 
+    it('ignores a data vdev that is still being filled', () => {
+      const plan = cleanPlan()
+      pool(plan).data.push({ id: 'new', type: 'mirror', diskIds: [] })
+      expect(findWarnings(plan)).toEqual([])
+    })
+
     it('accepts data vdevs of the same type and width', () => {
       const plan = cleanPlan()
       pool(plan).data = [

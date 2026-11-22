@@ -3,7 +3,7 @@ import { formatDecimal } from '../format'
 import type { Disk, Host } from '../model'
 import type { Warning } from '../warning'
 import type { Vdev, VdevType, ZfsPool } from './model'
-import { faultTolerance } from './topology'
+import { faultTolerance, hasValidDiskCount } from './topology'
 import { zfsDiskIds } from './validate'
 
 // Below parity + 2 disks a mirror gives the same protection with better performance. The upper
@@ -23,7 +23,8 @@ export function warnZfsPool(pool: ZfsPool, host: Host): Warning[] {
   return [
     ...vdevs.flatMap((vdev) => warnVdev(vdev, members(vdev))),
     ...warnRedundancy(pool),
-    ...warnDataVdevMix(pool.data, members),
+    // A vdev still being filled already has an issue; comparing it would only add noise.
+    ...warnDataVdevMix(pool.data.filter(hasValidDiskCount), members),
     ...warnAshift(pool, host, byId),
   ]
 }
