@@ -84,7 +84,7 @@ class Reader {
     const enclosure: Enclosure = {
       id: this.string(o.id, `${path}.id`),
       name: this.string(o.name, `${path}.name`),
-      kind: this.oneOf(o.kind, `${path}.kind`, ['chassis', 'shelf', 'usb']),
+      kind: this.oneOf(o.kind, `${path}.kind`, ['chassis', 'shelf', 'usb', 'card']),
       bays: this.array(o.bays, `${path}.bays`, (item, p) => this.bay(item, p)),
     }
     if (o.columns !== undefined) {
@@ -100,7 +100,7 @@ class Reader {
     const bay: Bay = {
       id: this.string(o.id, `${path}.id`),
       label: this.string(o.label, `${path}.label`),
-      formFactor: this.oneOf(o.formFactor, `${path}.formFactor`, ['lff', 'sff', 'm2']),
+      formFactor: this.oneOf(o.formFactor, `${path}.formFactor`, ['lff', 'sff', 'm2', 'aic']),
     }
     if (o.controllerId !== undefined) {
       bay.controllerId = this.string(o.controllerId, `${path}.controllerId`)

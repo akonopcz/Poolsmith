@@ -24,6 +24,25 @@ describe('plan file', () => {
     expect(parsePlan(serializePlan(plan))).toEqual({ ok: true, plan })
   })
 
+  it('reads back PCIe cards and add-in card bays', () => {
+    const plan = examplePlan()
+    plan.host.enclosures.push(
+      {
+        id: 'hyper',
+        name: 'Hyper M.2',
+        kind: 'card',
+        bays: [{ id: 'hyper-0', label: '0', formFactor: 'm2' }],
+      },
+      {
+        id: 'slots',
+        name: 'PCIe slots',
+        kind: 'chassis',
+        bays: [{ id: 'slot-3', label: '3', formFactor: 'aic' }],
+      },
+    )
+    expect(parsePlan(serializePlan(plan))).toEqual({ ok: true, plan })
+  })
+
   it('reports bays per row that are not a positive whole number', () => {
     const plan = examplePlan()
     plan.host.enclosures[1].columns = 0

@@ -3,9 +3,9 @@ import type { Enclosure } from '../core/model'
 
 /**
  * One scale for every enclosure, shaped like the real carriers: 2.5" sleds stand upright, 3.5"
- * sleds lie flat, M.2 is a flat strip. Width and height in pixels.
+ * sleds lie flat, M.2 is a flat strip, an add-in card a long one. Width and height in pixels.
  */
-export const BAY_SIZE = { sff: [48, 96], lff: [88, 64], m2: [104, 56] } as const
+export const BAY_SIZE = { sff: [48, 96], lff: [88, 64], m2: [104, 56], aic: [160, 56] } as const
 
 const BAY_GAP = 4
 /** How far a bay may widen to match the other enclosures, so a one-slot box is not stretched. */
